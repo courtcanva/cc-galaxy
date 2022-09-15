@@ -1,43 +1,42 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import type { AppState, AppThunk } from '../index'
+import type { AppState, AppThunk } from "../index";
 
 export interface CounterState {
-  value: number
-  status: 'idle' | 'loading' | 'failed'
+  value: number;
+  status: "idle" | "loading" | "failed";
 }
 
 const initialState: CounterState = {
   value: 0,
-  status: 'idle',
-}
-
+  status: "idle",
+};
 
 export const counterSlice = createSlice({
-  name: 'counter',
+  name: "counter",
   initialState,
   reducers: {
     increment: (state) => {
-      state.value += 1
+      state.value += 1;
     },
     decrement: (state) => {
-      state.value -= 1
+      state.value -= 1;
     },
     incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
+      state.value += action.payload;
     },
   },
-})
+});
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
-export const selectCount = (state: AppState) => state.counter.value
+export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const selectCount = (state: AppState) => state.counter.value;
 export const incrementIfOdd =
   (amount: number): AppThunk =>
   (dispatch, getState) => {
-    const currentValue = selectCount(getState())
+    const currentValue = selectCount(getState());
     if (currentValue % 2 === 1) {
-      dispatch(incrementByAmount(amount))
+      dispatch(incrementByAmount(amount));
     }
-  }
+  };
 
-export default counterSlice.reducer
+export default counterSlice.reducer;
