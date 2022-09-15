@@ -35,7 +35,7 @@ function CourtCanvaApp({ Component, pageProps }: AppPropsWithLayout) {
 
   if (typeof accessToken !== "string")
     return (
-      <Chakra >
+      <Chakra>
         <Provider store={store}>
           <Login />
         </Provider>
@@ -43,7 +43,7 @@ function CourtCanvaApp({ Component, pageProps }: AppPropsWithLayout) {
     );
 
   return (
-    <Chakra >
+    <Chakra>
       <Provider store={store}>
         <Layout>
           <Component {...pageProps} />

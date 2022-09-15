@@ -3,9 +3,16 @@ export enum FormActionKind {
 }
 
 interface FromState {
-  userEmail: string;
-  userPassword: string;
+  email: string;
+  password: string;
 }
+
+export const initialFormState = {
+  loginProps: {
+    email: "",
+    password: "",
+  },
+};
 
 interface FormAction {
   type: FormActionKind | null;

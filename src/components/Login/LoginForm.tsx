@@ -1,25 +1,21 @@
 import React, { useReducer, useState } from "react";
 import { Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
-import LoginReducer,{FormActionKind} from "@/components/Login/LoginReducer";
+import LoginReducer, { FormActionKind, initialFormState } from "@/components/Login/LoginReducer";
 import UserTokenService from "@/components/TokenService";
-import loginAction from "./LoginAction"
+import loginAction from "./LoginAction";
 
 interface LoginFromProps {
   loginStatus: (arg0: boolean) => boolean | void;
 }
 
-const initialFormState = {
-  userEmail: "",
-  userPassword: "",
-};
-
 const LoginForm = ({ loginStatus }: LoginFromProps) => {
-  const [state, dispatch] = useReducer(LoginReducer, initialFormState);
+  const { loginProps } = initialFormState;
+  const [state, dispatch] = useReducer(LoginReducer, loginProps);
   const [isLoginFail, setIsLoginFail] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { loginRequest } = loginAction();
-
-  const isInvalid = !state.userEmail || !state.userPassword;
+  const { email, password } = state;
+  const isInvalid = !email || !password;
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsLoginFail(false);
@@ -35,7 +31,7 @@ const LoginForm = ({ loginStatus }: LoginFromProps) => {
     event.preventDefault();
     setIsLoginFail(false);
     setIsLoading(true);
-    const loginResponse = await loginRequest(state.userEmail, state.userPassword);
+    const loginResponse = await loginRequest(email, password);
 
     if (loginResponse?.status !== 200) {
       setIsLoginFail(true);
@@ -57,9 +53,8 @@ const LoginForm = ({ loginStatus }: LoginFromProps) => {
           Email
         </FormLabel>
         <Input
-          id="email"
           type="email"
-          name="userEmail"
+          name="email"
           size="md"
           width="360px"
           placeholder="Enter Email"
@@ -72,9 +67,8 @@ const LoginForm = ({ loginStatus }: LoginFromProps) => {
           Password
         </FormLabel>
         <Input
-          id="password"
           type="password"
-          name="userPassword"
+          name="password"
           size="md"
           width="360px"
           placeholder="Enter Password"

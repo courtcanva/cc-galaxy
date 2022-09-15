@@ -35,7 +35,7 @@ const Login: React.FC = () => {
             zIndex="10"
           >
             <Flex flexDir="column" alignItems="center" marginTop="50px">
-              <Image boxSize="64px" alt = "dashboard-logo-192x192" src="dashboard-logo-192x192.png" />
+              <Image boxSize="64px" alt="dashboard-logo-192x192" src="dashboard-logo-192x192.png" />
               <Text marginTop="10px" color="brand.secondary">
                 CourtCanva
               </Text>
@@ -57,7 +57,12 @@ const Login: React.FC = () => {
             </Flex>
           </Flex>
 
-          <Image src="./login/login-image.png" zIndex="10" alt = "login-image" transform="translateX(-5px)" />
+          <Image
+            src="./login/login-image.png"
+            zIndex="10"
+            alt="login-image"
+            transform="translateX(-5px)"
+          />
         </Flex>
       </Flex>
     </HeaderLayout>
