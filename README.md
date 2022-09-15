@@ -1,13 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Court Canva Galaxy
 
-## Getting Started
-
-First, run the development server:
+### Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
+$ npm i
+```
+
+### Start the server
+
+```bash
+$ npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `src/pages/index.tsx`. The page auto-updates as you edit the file.
+
+The `src/pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+### Environment Variables
+
+Add a file named `.env` at the root directory. Copy the .env code from Frontend ENV ticket on notion(Get notion access permission from the development group) and paste it in .env. You can refer to the `.env.example` file in the directory and repo.
+
+### Build for Deploy
+
+```shell
+$ npm run build
+```
+
+### [Static HTML Export](https://nextjs.org/docs/advanced-features/static-html-export)
+
+```shell
+$ npm run export
+```
+
+### Run the Production
+
+```shell
+$ npm run start
+```
+
+### Run All Test
+
+```shell
+$ npm run test:ci
+```
+
+### Run Single Test With Watching And Display Coverage
+
+```shell
+$ npm run test filename --watch --coverage
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
