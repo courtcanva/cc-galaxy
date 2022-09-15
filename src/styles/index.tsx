@@ -1,5 +1,4 @@
 import { ChakraProvider } from "@chakra-ui/react";
-// import customTheme from "./theme";
 import theme from "./theme";
 
 interface ChakraProps {
