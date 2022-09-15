@@ -1,17 +1,19 @@
 {
   "env": {
     "browser": true,
+    "node": true,
     "es2021": true
   },
   "extends": [
-    "next/core-web-vitals",
     "eslint:recommended",
-    "google",
-    "prettier",
+    "next",
+    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
     "plugin:@next/next/recommended",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "plugin:react/recommended",
+    "google",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -26,7 +28,7 @@
       "version": "detect"
     }
   },
-  "plugins": ["react", "@typescript-eslint", "jest"],
+  "plugins": ["react", "@typescript-eslint", "jest", "prettier"],
   "rules": {
     // do not require JSDoc for your functions
     "require-jsdoc": "off",

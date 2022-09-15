@@ -35,3 +35,8 @@ yarn-error.log*
 
 /jest.config.js
 /next-env.d.ts
+
+buildspec.yml
+
+/.idea
+.idea

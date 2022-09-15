@@ -1,5 +1,36 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
-yarn pre-commit
-# npx --no-install lint-staged
+echo '🏗️👷 Styling, testing and building your project before committing'
+
+# Check Prettier standards
+npm run prettier-check-all 
+
+npm run prettier-format-all
+
+# Check ESLint Standards
+npm run eslint ||
+(
+        echo '😤🏀👋😤 Eslint Check Failed. 😤🏀👋😤 
+                Make the required changes listed above, add changes and try to commit again.'
+        false; 
+)
+
+# Check tsconfig standards
+npm run type-check ||
+(
+    echo '🤡😂❌🤡 Type Check Failed. 🤡😂❌🤡
+            Make the changes required above.'
+    false;
+)
+
+# Check test all pass
+npm run test ||
+(
+    echo '😤😂❌🤡 Test Failed. 😤😂❌🤡
+            Make sure all tests pass.'
+    false;
+)
+
+# If everything passes... Now we can commit
+echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
