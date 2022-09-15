@@ -10,8 +10,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Flex as="header" width="full" align="center">
-        <Box marginLeft="auto" marginTop={5} marginRight={5}>
-        </Box>
+        <Box marginLeft="auto" marginTop={5} marginRight={5}></Box>
       </Flex>
       <Box as="main">{children}</Box>
       <Footer />

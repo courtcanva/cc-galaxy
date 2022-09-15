@@ -76,25 +76,7 @@ const LoginForm = ({ loginStatus }: LoginFromProps) => {
         />
       </FormControl>
 
-      <Button
-        width="360px"
-        height="40px"
-        marginTop="25px"
-        marginBottom="100px"
-        background={isInvalid ? "#c5c5c6" : "white"}
-        border="1px solid"
-        borderColor={isInvalid ? "transparent" : "brand.secondary"}
-        _hover={{
-          background: "brand.secondary",
-          color: "white",
-        }}
-        _active={{
-          background: "button.active",
-        }}
-        type="submit"
-        disabled={isInvalid}
-        isLoading={isLoading}
-      >
+      <Button variant={"loginBtn"} type="submit" disabled={isInvalid} isLoading={isLoading}>
         Login in
       </Button>
     </form>
