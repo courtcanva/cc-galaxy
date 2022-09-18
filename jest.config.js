@@ -22,12 +22,18 @@ const customJestConfig = {
   collectCoverageFrom: [
     "<rootDir>/src/**/*.{tsx,ts}",
     "!<rootDir>/src/components/ThemeToggle/index.tsx",
+    "!<rootDir>/src/layouts/HeaderLayout.tsx",
     "!<rootDir>/src/layouts/index.tsx",
     "!<rootDir>/src/styles/**/*.{tsx,ts}",
     "!<rootDir>/src/styles/**/**/*.{tsx,ts}",
     "!<rootDir>/src/styles/*.{tsx,ts}",
+    "!<rootDir>/src/constants/environment.ts",
     "!<rootDir>/src/pages/_app.tsx",
     "!<rootDir>/src/pages/_document.tsx",
+    "!<rootDir>/src/store/hooks.ts",
+    "!<rootDir>/src/store/index.ts", // placeholder
+    "!<rootDir>/src/store/reducer/counterSlice.ts", // placeholder
+    "!<rootDir>/src/utils/axios.ts",
     "!<rootDir>/node_modules/",
     "!<rootDir>/**/__tests__/**",
     "!<rootDir>/**/*.d.ts",
