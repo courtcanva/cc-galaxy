@@ -12,7 +12,7 @@ phases:
       - NEXT_PUBLIC_HEALTH_API=${NEXT_PUBLIC_HEALTH_API}
       - NEXT_PUBLIC_API_BASE_URI=${NEXT_PUBLIC_API_BASE_URI}
      # - NEXT_PUBLIC_GOOGLE_CLIENT_ID=${NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-      - npm i next
+      - npm i
       - npm run build
       - npm run export
 
