@@ -3,15 +3,15 @@ export enum FormActionKind {
 }
 
 interface FormState {
-  firstName;
-  lastName;
-  franchiseAbn;
-  email;
-  phoneNumber;
-  residentialAddress;
-  postcode;
-  state;
-  password;
+  firstName: string;
+  lastName: string;
+  franchiseAbn: string;
+  email: string;
+  phoneNumber: string;
+  residentialAddress: string;
+  postcode: number;
+  state: string;
+  password: string;
 }
 
 export const initialFormState = {
@@ -27,3 +27,21 @@ export const initialFormState = {
     password: "",
   },
 };
+
+interface FormAction {
+  type: FormActionKind | null;
+  field: string;
+  payload: string;
+}
+
+export default function formReducer(state: FormState, action: FormAction) {
+  switch (action.type) {
+    case FormActionKind.HANDLE_SIGNUP_INPUT:
+      return {
+        ...state,
+        [action.field]: action.payload,
+      };
+    default:
+      return state;
+  }
+}

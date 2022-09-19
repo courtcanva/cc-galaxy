@@ -22,6 +22,7 @@ export interface Staff {
   password: string;
 }
 
+// why put these into a function and extract them afterwards in SignUpForm.tsx?
 export default function SignUpAction() {
   const router = useRouter();
   const getErrorMessage = (error: unknown) => {
