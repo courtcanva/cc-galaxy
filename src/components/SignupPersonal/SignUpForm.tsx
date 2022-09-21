@@ -1,16 +1,13 @@
 import React, { useReducer, useState } from "react";
-import { Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
+import { Flex, Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
 import SignUpReducer, { initialFormState } from "@/components/SignupPersonal/SignUpReducer";
 import SignUpAction from "./SignUpAction";
-
-interface SignUpFormProps {
-  // a function with boolean param arg0 that returns boolean or void
-  loginStatus: (arg0: boolean) => boolean | void;
-}
+import { SignUpFormProps } from "./SignUpFormProps";
+import { FormActionKind } from "@/components/SignupPersonal/SignUpReducer";
 
 const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
   const { signUpProps } = initialFormState;
-  const [formState, dispatch] = useReducer(SignUpReducer, initialFormState);
+  const [formState, dispatch] = useReducer(SignUpReducer, initialFormState, (s: any): any => s);
   const [isSignUpFail, setIsSignUpFail] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { signUpRequest } = SignUpAction();
@@ -36,23 +33,36 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
     !state ||
     !password;
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch({
+      type: FormActionKind.HANDLE_SIGNUP_INPUT,
+      field: e.target.name,
+      payload: e.target.value.trim(),
+    });
+  };
+
   return (
     <form>
       <FormControl isInvalid={isSignUpFail}>
-        <FormLabel htmlFor="email" fontWeight="600">
-          Email
-        </FormLabel>
-        <Input type="email" name="email" size="md" width="360px" placeholder="Enter Email" />
-        <FormLabel htmlFor="password" fontWeight="600">
-          Password
-        </FormLabel>
-        <Input
-          type="password"
-          name="password"
-          size="md"
-          width="360px"
-          placeholder="Enter Password"
-        />
+        {Object.keys(signUpProps).map((val, idx) => {
+          return (
+            <Flex key={idx}>
+              <FormLabel htmlFor={val} fontWeight="600" key={"label " + idx} id={"label " + idx}>
+                {val}
+              </FormLabel>
+              <Input
+                onChange={handleChange}
+                id={"input " + idx}
+                type={["email", "password"].includes(val) ? val : "text"}
+                name={val}
+                size="sm"
+                width="360px"
+                placeholder={"Enter " + val}
+                key={"input " + idx}
+              />
+            </Flex>
+          );
+        })}
       </FormControl>
       <Button type="submit" disabled={isInvalid} isLoading={isLoading}>
         Sign up
