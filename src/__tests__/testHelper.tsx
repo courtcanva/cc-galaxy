@@ -1,9 +1,11 @@
 import React, { ReactNode } from "react";
+import { Provider } from "react-redux";
+import store from "../store";
 import { render } from "@testing-library/react";
 import { NextRouter } from "next/router";
 
-export const renderWithMockedProvider = (children: ReactNode) => {
-  return render(<>{children}</>);
+const renderWithMockedProvider = (children: ReactNode) => {
+  return render(<Provider store={store}>{children}</Provider>);
 };
 
 export function createMockRouter(router: Partial<NextRouter>): NextRouter {
@@ -33,3 +35,5 @@ export function createMockRouter(router: Partial<NextRouter>): NextRouter {
     ...router,
   };
 }
+
+export default renderWithMockedProvider;

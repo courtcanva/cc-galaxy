@@ -1,6 +1,6 @@
-import { renderWithMockedProvider } from "../testHelper";
-import Footer, { FooterContent } from "@/layouts/Footer";
+import renderWithMockedProvider from "../testHelper";
 import { screen } from "@testing-library/react";
+import Footer, { FooterContent } from "../../layouts/Footer";
 
 describe("Footer", () => {
   it("shoud render footer success", () => {
