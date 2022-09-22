@@ -18,6 +18,7 @@ const customJestConfig = {
     "^@/components/(.*)$": "<rootDir>/src/components/$1",
     "^@/layouts/(.*)$": "<rootDir>/src/layouts/$1",
     "^@/pages/(.*)$": "<rootDir>/src/pages/$1",
+    "^@/utils/(.*)$": "<rootDir>/src/utils/$1",
   },
   collectCoverageFrom: [
     "<rootDir>/src/**/*.{tsx,ts}",
@@ -53,6 +54,9 @@ const customJestConfig = {
 const jestConfig = async () => {
   // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
   const nextJestConfig = await createJestConfig(customJestConfig)();
+    nextJestConfig.transformIgnorePatterns = [
+      "<rootDir>/node_modules/(?!lodash-es)"
+    ]
   return {
     ...nextJestConfig,
     moduleNameMapper: {

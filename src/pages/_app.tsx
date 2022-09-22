@@ -6,7 +6,7 @@ import { Chakra } from "@/styles/index";
 import Layout from "@/layouts";
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
-import SignUp from "./signup";
+import SignUp from "./signUpPersonal";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
