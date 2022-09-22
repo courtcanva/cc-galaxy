@@ -4,6 +4,7 @@ import SignUpReducer, { initialFormState } from "@/components/SignupPersonal/Sig
 import SignUpAction from "./SignUpAction";
 import { SignUpFormProps } from "./SignUpFormProps";
 import { FormActionKind } from "@/components/SignupPersonal/SignUpReducer";
+import _ from "lodash";
 
 const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
   const { signUpProps } = initialFormState;
@@ -44,7 +45,7 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
   return (
     <form>
       <FormControl isInvalid={isSignUpFail}>
-        {Object.keys(signUpProps).map((val, idx) => {
+        {_.keys(signUpProps).map((val, idx) => {
           return (
             <Flex key={idx}>
               <FormLabel htmlFor={val} fontWeight="600" key={"label " + idx} id={"label " + idx}>
