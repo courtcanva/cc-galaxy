@@ -8,14 +8,13 @@ interface FormState {
   franchiseAbn: string;
   email: string;
   phoneNumber: string;
-  // there seems to be some discrepancy between frontend and backend
   residentialAddress: string;
   postcode: number;
   state: string;
   password: string;
 }
 
-export const initialFormState = {
+export const initialFormState: FormState = {
   signUpProps: {
     firstName: "",
     lastName: "",
