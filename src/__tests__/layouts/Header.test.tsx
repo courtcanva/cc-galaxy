@@ -1,8 +1,9 @@
+/* eslint-disable jest/expect-expect */
 import { render } from "@testing-library/react";
 import Header from "@/layouts/Header";
 
 describe("Header", () => {
-  it("shoud render header success", () => {
+  it("shout render header success", () => {
     render(<Header />);
   });
 });

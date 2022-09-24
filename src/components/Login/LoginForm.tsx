@@ -1,7 +1,6 @@
 import React, { useReducer, useState } from "react";
 import { Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
 import LoginReducer, { FormActionKind, initialFormState } from "@/components/Login/LoginReducer";
-import UserTokenService from "@/components/TokenService";
 import loginAction from "./LoginAction";
 
 interface LoginFromProps {
@@ -40,9 +39,6 @@ const LoginForm = ({ loginStatus }: LoginFromProps) => {
       return;
     }
 
-    const tokens: object = loginResponse.data;
-
-    UserTokenService.setUserToken(tokens);
     setIsLoading(false);
   };
 
