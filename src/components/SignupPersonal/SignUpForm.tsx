@@ -48,12 +48,17 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
         {_.keys(signUpProps).map((val, idx) => {
           return (
             <Flex key={idx}>
-              <FormLabel htmlFor={val} fontWeight="600" key={"label " + idx} id={"label " + idx}>
+              <FormLabel
+                htmlFor={`${val}${idx}`}
+                fontWeight="600"
+                key={"label " + idx}
+                id={`label ${idx}`}
+              >
                 {val}
               </FormLabel>
               <Input
                 onChange={handleChange}
-                id={"input " + idx}
+                id={`${val}${idx}`}
                 type={["email", "password"].includes(val) ? val : "text"}
                 name={val}
                 size="sm"
