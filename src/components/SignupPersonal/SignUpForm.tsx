@@ -35,7 +35,7 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
               <FormLabel htmlFor={`${val}${idx}`} key={"label " + idx} id={`label ${idx}`}>
                 {properFieldName}
               </FormLabel>
-              {val === "residentialAddress" ? (
+              {val && val === "residentialAddress" ? (
                 <Textarea
                   onChange={handleChange}
                   id={`${val}${idx}`}
