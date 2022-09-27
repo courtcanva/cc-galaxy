@@ -4,7 +4,6 @@ import SignUpReducer, { initialFormState } from "@/components/SignupPersonal/Sig
 import SignUpAction from "./SignUpAction";
 import { SignUpFormProps } from "./SignUpFormProps";
 import { FormActionKind, fieldNameMap } from "@/components/SignupPersonal/SignUpReducer";
-import _ from "lodash";
 
 const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
   const [formState, dispatch] = useReducer(SignUpReducer, initialFormState, (s: any): any => s);
@@ -26,7 +25,7 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
   return (
     <form>
       <FormControl isInvalid={isSignUpFail}>
-        {_.keys(initialFormState).map((val, idx) => {
+        {Object.keys(initialFormState).map((val, idx) => {
           // type casting
           // see: https://stackoverflow.com/a/64136988
           const properFieldName = fieldNameMap[val as keyof typeof fieldNameMap];
