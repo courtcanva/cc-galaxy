@@ -5,27 +5,32 @@ export enum FormActionKind {
 interface FormState {
   firstName: string;
   lastName: string;
-  franchiseAbn: string;
-  email: string;
   phoneNumber: string;
   residentialAddress: string;
-  postcode: number;
-  state: string;
-  password: string;
+  postcode: number | null;
+  state: "QLD" | "VIC" | "NSW" | "NT" | "SA" | "ACT" | "TAS" | "WA" | null;
 }
 
 export const initialFormState: FormState = {
-  signUpProps: {
-    firstName: "",
-    lastName: "",
-    franchiseAbn: "",
-    email: "",
-    phoneNumber: "",
-    residentialAddress: "",
-    postcode: "",
-    state: "",
-    password: "",
-  },
+  firstName: "",
+  lastName: "",
+  phoneNumber: "",
+  postcode: null,
+  state: null,
+  residentialAddress: "",
+};
+
+// use `as string` to lock the type of the key to be string
+// otherwise there will be a warning in SignUpForm.tsx in the following line
+// const properFieldName = fieldNameMap[val];
+type FieldMap = { [P in keyof FormState]: string };
+export const fieldNameMap: FieldMap = {
+  firstName: "First Name",
+  lastName: "Last Name",
+  phoneNumber: "Phone number",
+  postcode: "Postcode",
+  state: "State",
+  residentialAddress: "Residential Address",
 };
 
 interface FormAction {
