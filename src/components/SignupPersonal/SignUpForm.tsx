@@ -6,9 +6,14 @@ import SignUpReducer, {
 } from "@/components/SignupPersonal/SignUpReducer";
 import SignUpAction from "./SignUpAction";
 import { SignUpFormProps } from "./SignUpFormProps";
-import { FormActionKind, fieldNameMap } from "@/components/SignupPersonal/SignUpReducer";
+import {
+  FormActionKind,
+  fieldNameMap,
+  PersonalInfoSchema,
+} from "@/components/SignupPersonal/SignUpReducer";
 import { useForm, SubmitHandler } from "react-hook-form";
 import AlertPop from "../Common/AlertPop";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
   const {
@@ -16,7 +21,8 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormState>();
+  } = useForm<FormState>({ resolver: zodResolver(PersonalInfoSchema) });
+
   const onSubmit: SubmitHandler<FormState> = (data) => console.log(data);
 
   const [formState, dispatch] = useReducer(SignUpReducer, initialFormState, (s: any): any => s);

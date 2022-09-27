@@ -1,3 +1,10 @@
+import { z } from "zod";
+
+// https://stackoverflow.com/a/54061487
+// https://github.com/Microsoft/TypeScript/pull/29510
+const stateList = ["QLD", "VIC", "NSW", "NT", "SA", "ACT", "TAS", "WA"] as const;
+type StateList = typeof stateList[number];
+
 export enum FormActionKind {
   HANDLE_SIGNUP_INPUT = "HANDLE SIGNUP INPUT",
 }
@@ -8,7 +15,7 @@ export interface FormState {
   phoneNumber: string;
   residentialAddress: string;
   postcode: number | null;
-  state: "QLD" | "VIC" | "NSW" | "NT" | "SA" | "ACT" | "TAS" | "WA" | null;
+  state: null | StateList;
 }
 
 export const initialFormState: FormState = {
@@ -32,6 +39,15 @@ export const fieldNameMap: FieldMap = {
   state: "State",
   residentialAddress: "Residential Address",
 };
+
+export const PersonalInfoSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  phoneNumber: z.string(),
+  postcode: z.number().positive().max(9999).min(100),
+  state: z.enum(stateList),
+  residentialAddress: z.string(),
+});
 
 interface FormAction {
   type: FormActionKind | null;
