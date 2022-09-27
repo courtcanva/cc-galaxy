@@ -40,13 +40,14 @@ export const fieldNameMap: FieldMap = {
   residentialAddress: "Residential Address",
 };
 
+const required_error_msg = "This field is required";
 export const PersonalInfoSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  phoneNumber: z.string(),
-  postcode: z.number().positive().max(9999).min(100),
-  state: z.enum(stateList),
-  residentialAddress: z.string(),
+  firstName: z.string({ required_error: required_error_msg }),
+  lastName: z.string({ required_error: required_error_msg }),
+  phoneNumber: z.string({ required_error: required_error_msg }),
+  postcode: z.number({ required_error: required_error_msg }).positive().max(9999).min(100),
+  state: z.enum(stateList, { required_error: required_error_msg }),
+  residentialAddress: z.string({ required_error: required_error_msg }),
 });
 
 interface FormAction {

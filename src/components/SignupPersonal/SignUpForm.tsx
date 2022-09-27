@@ -55,13 +55,14 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
               </FormLabel>
               {val && val === "residentialAddress" ? (
                 <Textarea
-                  onChange={handleChange}
                   id={`${val}${idx}`}
-                  name={properFieldName}
                   size="sm"
                   width="360px"
                   placeholder={`Enter ${properFieldName}`}
                   key={"input " + idx}
+                  {...register(val as keyof FormState, {
+                    onChange: handleChange,
+                  })}
                 ></Textarea>
               ) : (
                 <Input
@@ -71,7 +72,9 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
                   width="360px"
                   placeholder={`Enter ${properFieldName}`}
                   key={"input " + idx}
-                  {...register(val as keyof FormState, { required: "This field is required" })}
+                  {...register(val as keyof FormState, {
+                    onChange: handleChange,
+                  })}
                 />
               )}
               {errors[val as keyof FormState] && (
