@@ -2,7 +2,7 @@ export enum FormActionKind {
   HANDLE_SIGNUP_INPUT = "HANDLE SIGNUP INPUT",
 }
 
-interface FormState {
+export interface FormState {
   firstName: string;
   lastName: string;
   phoneNumber: string;

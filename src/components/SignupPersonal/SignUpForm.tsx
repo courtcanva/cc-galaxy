@@ -1,11 +1,24 @@
 import React, { useReducer, useState } from "react";
 import { Textarea, Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
-import SignUpReducer, { initialFormState } from "@/components/SignupPersonal/SignUpReducer";
+import SignUpReducer, {
+  initialFormState,
+  FormState,
+} from "@/components/SignupPersonal/SignUpReducer";
 import SignUpAction from "./SignUpAction";
 import { SignUpFormProps } from "./SignUpFormProps";
 import { FormActionKind, fieldNameMap } from "@/components/SignupPersonal/SignUpReducer";
+import { useForm, SubmitHandler } from "react-hook-form";
+import AlertPop from "../Common/AlertPop";
 
 const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<FormState>();
+  const onSubmit: SubmitHandler<FormState> = (data) => console.log(data);
+
   const [formState, dispatch] = useReducer(SignUpReducer, initialFormState, (s: any): any => s);
   const [isSignUpFail, setIsSignUpFail] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -23,7 +36,7 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl isInvalid={isSignUpFail}>
         {Object.keys(initialFormState).map((val, idx) => {
           // type casting
@@ -46,15 +59,17 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
                 ></Textarea>
               ) : (
                 <Input
-                  onChange={handleChange}
                   id={`${val}${idx}`}
                   type={["email", "password"].includes(val) ? val : "text"}
-                  name={properFieldName}
                   size="sm"
                   width="360px"
                   placeholder={`Enter ${properFieldName}`}
                   key={"input " + idx}
+                  {...register(val as keyof FormState, { required: "This field is required" })}
                 />
+              )}
+              {errors[val as keyof FormState] && (
+                <AlertPop title={errors[val as keyof FormState]!.message || "Input error"} />
               )}
             </>
           );
@@ -64,6 +79,7 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
       <Button type="submit" disabled={isInvalid} isLoading={isLoading}>
         Sign up
       </Button>
+      <input type="submit" />
     </form>
   );
 };
