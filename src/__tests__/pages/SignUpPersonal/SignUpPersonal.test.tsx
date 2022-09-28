@@ -60,29 +60,17 @@ describe("Testing form validation", () => {
   it("should show warning", async () => {
     // Rendering the component and its tree
     renderWithMockedProvider(<SignUpPersonal />);
-    // Extracting the child, username_input component with his accessibilityLabel
-    const firstNameInput = screen.getByLabelText("First Name");
-    const lastNameInput = screen.getByLabelText("Last Name");
-    const phoneNumberInput = screen.getByLabelText("Phone number");
-    const residentialAddressInput = screen.getByLabelText("Residential Address");
-    const postcodeInput = screen.getByLabelText("Postcode");
-    const stateInput = screen.getByLabelText("State");
     const submitBtn = screen.getByText("Sign up");
-    // Fire a native changeText event with a specific value
-    fireEvent.change(firstNameInput, { target: { value: "Jane" } });
-    fireEvent.change(lastNameInput, { target: { value: "Doe" } });
-    fireEvent.change(phoneNumberInput, { target: { value: "0439493939" } });
-    fireEvent.change(residentialAddressInput, { target: { value: "test" } });
-    fireEvent.change(postcodeInput, { target: { value: "test" } });
-    fireEvent.change(stateInput, { target: { value: "QLD" } });
-    await waitFor(() => user.click(submitBtn));
+    await user.click(submitBtn);
 
     // Checking the rendered value
     expect(screen.getByText("String must contain at least 1 character(s)")).toBeInTheDocument();
-    expect("The Phone Number does not match required format").toBeInTheDocument();
-    expect("The Postcode does not match the required format").toBeInTheDocument();
+    expect(screen.getByText("The Phone Number does not match required format")).toBeInTheDocument();
+    expect(screen.getByText("The Postcode does not match the required format")).toBeInTheDocument();
     expect(
-      "Invalid enum value. Expected 'QLD' | 'VIC' | 'NSW' | 'NT' | 'SA' | 'ACT' | 'TAS' | 'WA', received ''"
+      screen.getByText(
+        "Invalid enum value. Expected 'QLD' | 'VIC' | 'NSW' | 'NT' | 'SA' | 'ACT' | 'TAS' | 'WA', received ''"
+      )
     ).toBeInTheDocument();
   });
 });
