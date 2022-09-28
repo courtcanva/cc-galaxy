@@ -6,7 +6,9 @@ const htmlElementMapping = {
   state: (props: object) => (
     <Select {...props}>
       {stateList.map((s: string) => (
-        <option value={s}>{s}</option>
+        <option key={`opt${s}`} value={s}>
+          {s}
+        </option>
       ))}
     </Select>
   ),
