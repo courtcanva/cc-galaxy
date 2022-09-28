@@ -39,8 +39,12 @@ export const fieldNameMap: FieldMap = {
 
 const requiredErrorMsg = "This field is required";
 export const PersonalInfoSchema = z.object({
-  firstName: z.string({ required_error: requiredErrorMsg }).min(1),
-  lastName: z.string({ required_error: requiredErrorMsg }).min(1),
+  firstName: z
+    .string({ required_error: requiredErrorMsg })
+    .min(1, { message: "First name must contain at least 1 character(s)" }),
+  lastName: z
+    .string({ required_error: requiredErrorMsg })
+    .min(1, { message: "Last name must contain at least 1 character(s)" }),
   phoneNumber: z
     .string({ required_error: requiredErrorMsg })
     .regex(phoneNumberRegex, { message: "The Phone Number does not match required format" }),

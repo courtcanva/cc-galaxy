@@ -61,16 +61,33 @@ describe("Testing form validation", () => {
     // Rendering the component and its tree
     renderWithMockedProvider(<SignUpPersonal />);
     const submitBtn = screen.getByText("Sign up");
-    await user.click(submitBtn);
+    user.click(submitBtn);
 
     // Checking the rendered value
-    expect(screen.getByText("String must contain at least 1 character(s)")).toBeInTheDocument();
-    expect(screen.getByText("The Phone Number does not match required format")).toBeInTheDocument();
-    expect(screen.getByText("The Postcode does not match the required format")).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        "Invalid enum value. Expected 'QLD' | 'VIC' | 'NSW' | 'NT' | 'SA' | 'ACT' | 'TAS' | 'WA', received ''"
-      )
-    ).toBeInTheDocument();
+    await waitFor(() =>
+      expect(
+        screen.getByText("First name must contain at least 1 character(s)")
+      ).toBeInTheDocument()
+    );
+    await waitFor(() =>
+      expect(screen.getByText("Last name must contain at least 1 character(s)")).toBeInTheDocument()
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByText("The Phone Number does not match required format")
+      ).toBeInTheDocument()
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByText("The Postcode does not match the required format")
+      ).toBeInTheDocument()
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByText(
+          "Invalid enum value. Expected 'QLD' | 'VIC' | 'NSW' | 'NT' | 'SA' | 'ACT' | 'TAS' | 'WA', received ''"
+        )
+      ).toBeInTheDocument()
+    );
   });
 });
