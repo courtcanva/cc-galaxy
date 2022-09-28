@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { phoneNumberRegex, postcodeRegex } from "./constants/constants";
 
 // https://stackoverflow.com/a/54061487
 // https://github.com/Microsoft/TypeScript/pull/29510
@@ -14,7 +15,7 @@ export interface FormState {
   lastName: string;
   phoneNumber: string;
   residentialAddress: string;
-  postcode: number | null;
+  postcode: string;
   state: null | StateList;
 }
 
@@ -22,7 +23,7 @@ export const initialFormState: FormState = {
   firstName: "",
   lastName: "",
   phoneNumber: "",
-  postcode: null,
+  postcode: "",
   state: null,
   residentialAddress: "",
 };
@@ -42,10 +43,14 @@ export const fieldNameMap: FieldMap = {
 
 const required_error_msg = "This field is required";
 export const PersonalInfoSchema = z.object({
-  firstName: z.string({ required_error: required_error_msg }),
-  lastName: z.string({ required_error: required_error_msg }),
-  phoneNumber: z.string({ required_error: required_error_msg }),
-  postcode: z.number({ required_error: required_error_msg }).positive().max(9999).min(100),
+  firstName: z.string({ required_error: required_error_msg }).min(1),
+  lastName: z.string({ required_error: required_error_msg }).min(1),
+  phoneNumber: z
+    .string({ required_error: required_error_msg })
+    .regex(phoneNumberRegex, { message: "The Phone Number does not match required format" }),
+  postcode: z
+    .string({ required_error: required_error_msg })
+    .regex(postcodeRegex, { message: "The Postcode does not match the required format" }),
   state: z.enum(stateList, { required_error: required_error_msg }),
   residentialAddress: z.string({ required_error: required_error_msg }),
 });
