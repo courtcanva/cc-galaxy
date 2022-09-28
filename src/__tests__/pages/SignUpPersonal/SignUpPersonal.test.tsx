@@ -1,7 +1,7 @@
 import React from "react";
 import renderWithMockedProvider from "../../testHelper";
 import { fireEvent, screen } from "@testing-library/react";
-import SignUpPersonal from "../../../pages/signUpPersonal";
+import SignUpPersonal from "../../../pages/sign-up";
 import { FormActionKind, initialFormState } from "@/components/SignupPersonal/SignUpReducer";
 import formReducer from "@/components/SignupPersonal/SignUpReducer";
 
