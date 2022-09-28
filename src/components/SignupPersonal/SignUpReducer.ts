@@ -37,16 +37,16 @@ export const fieldNameMap: FieldMap = {
   residentialAddress: "Residential Address",
 };
 
-const required_error_msg = "This field is required";
+const requiredErrorMsg = "This field is required";
 export const PersonalInfoSchema = z.object({
-  firstName: z.string({ required_error: required_error_msg }).min(1),
-  lastName: z.string({ required_error: required_error_msg }).min(1),
+  firstName: z.string({ required_error: requiredErrorMsg }).min(1),
+  lastName: z.string({ required_error: requiredErrorMsg }).min(1),
   phoneNumber: z
-    .string({ required_error: required_error_msg })
+    .string({ required_error: requiredErrorMsg })
     .regex(phoneNumberRegex, { message: "The Phone Number does not match required format" }),
   postcode: z
-    .string({ required_error: required_error_msg })
+    .string({ required_error: requiredErrorMsg })
     .regex(postcodeRegex, { message: "The Postcode does not match the required format" }),
-  state: z.enum(stateList, { required_error: required_error_msg }),
-  residentialAddress: z.string({ required_error: required_error_msg }),
+  state: z.enum(stateList, { required_error: requiredErrorMsg }),
+  residentialAddress: z.string({ required_error: requiredErrorMsg }),
 });
