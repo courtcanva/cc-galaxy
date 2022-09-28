@@ -54,9 +54,7 @@ const customJestConfig = {
 const jestConfig = async () => {
   // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
   const nextJestConfig = await createJestConfig(customJestConfig)();
-    nextJestConfig.transformIgnorePatterns = [
-      "<rootDir>/node_modules/(?!lodash-es)"
-    ]
+  nextJestConfig.transformIgnorePatterns = ["<rootDir>/node_modules/(?!lodash-es)"];
   return {
     ...nextJestConfig,
     moduleNameMapper: {
