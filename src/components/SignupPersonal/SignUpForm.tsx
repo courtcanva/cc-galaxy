@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Textarea, Input, Select, Button, FormControl, FormLabel } from "@chakra-ui/react";
+import { Button, FormControl, FormLabel } from "@chakra-ui/react";
 import { initialFormState, FormState } from "@/components/SignupPersonal/SignUpReducer";
 import { SignUpFormProps } from "./SignUpFormProps";
 import { fieldNameMap, PersonalInfoSchema } from "@/components/SignupPersonal/SignUpReducer";
@@ -15,7 +15,7 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
     watch,
     formState: { errors },
   } = useForm<FormState>({ resolver: zodResolver(PersonalInfoSchema) });
-  const watchAllFields = watch();
+  watch();
 
   const onSubmit: SubmitHandler<FormState> = (data) => console.log(data);
   const [isLoading, setIsLoading] = useState<boolean>(false);
