@@ -49,24 +49,23 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
           // type casting
           // see: https://stackoverflow.com/a/64136988
           const properFieldName = fieldNameMap[val as keyof typeof fieldNameMap];
-          const TempElem = getHtmlElementMapping(val);
+          const elemRenderer = getHtmlElementMapping(val);
           return (
             <div key={`div-${idx}`}>
               <FormLabel htmlFor={`${val}${idx}`} key={"label " + idx} id={`label ${idx}`}>
                 {properFieldName}
               </FormLabel>
-              {val && (
-                <TempElem
-                  id={`${val}${idx}`}
-                  size="sm"
-                  width="360px"
-                  placeholder={`Enter ${properFieldName}`}
-                  key={"input " + idx}
-                  {...register(val as keyof FormState, {
+              {val &&
+                elemRenderer({
+                  id: `${val}${idx}`,
+                  size: "sm",
+                  width: "360px",
+                  placeholder: `Enter ${properFieldName}`,
+                  key: "input " + idx,
+                  ...register(val as keyof FormState, {
                     onChange: handleChange,
-                  })}
-                ></TempElem>
-              )}
+                  }),
+                })}
               {errors[val as keyof FormState] && (
                 <AlertPop title={errors[val as keyof FormState]!.message || "Input error"} />
               )}

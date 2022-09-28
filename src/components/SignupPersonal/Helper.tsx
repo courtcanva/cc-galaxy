@@ -1,10 +1,21 @@
-import { Textarea, Input, Select, Button, FormControl, FormLabel } from "@chakra-ui/react";
+import { Textarea, Input, Select } from "@chakra-ui/react";
+import { stateList } from "./SignUpReducer";
 
 const htmlElementMapping = {
-  residentialAddress: Textarea,
-  state: Select,
+  residentialAddress: (props: object) => <Textarea {...props}></Textarea>,
+  state: (props: object) => (
+    <Select {...props}>
+      {stateList.map((s: string) => (
+        <option value={s}>{s}</option>
+      ))}
+    </Select>
+  ),
 };
 
 export const getHtmlElementMapping = (fieldName: string) => {
-  return htmlElementMapping[fieldName as keyof typeof htmlElementMapping] || Input;
+  return (
+    htmlElementMapping[fieldName as keyof typeof htmlElementMapping] ||
+    // default
+    ((props: object) => <Input {...props} />)
+  );
 };

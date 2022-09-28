@@ -2,7 +2,7 @@ import { z } from "zod";
 
 // https://stackoverflow.com/a/54061487
 // https://github.com/Microsoft/TypeScript/pull/29510
-const stateList = ["QLD", "VIC", "NSW", "NT", "SA", "ACT", "TAS", "WA"] as const;
+export const stateList = ["QLD", "VIC", "NSW", "NT", "SA", "ACT", "TAS", "WA"] as const;
 type StateList = typeof stateList[number];
 
 export enum FormActionKind {
