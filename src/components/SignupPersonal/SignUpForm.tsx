@@ -1,16 +1,8 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useState } from "react";
 import { Textarea, Input, Select, Button, FormControl, FormLabel } from "@chakra-ui/react";
-import SignUpReducer, {
-  initialFormState,
-  FormState,
-} from "@/components/SignupPersonal/SignUpReducer";
-import SignUpAction from "./SignUpAction";
+import { initialFormState, FormState } from "@/components/SignupPersonal/SignUpReducer";
 import { SignUpFormProps } from "./SignUpFormProps";
-import {
-  FormActionKind,
-  fieldNameMap,
-  PersonalInfoSchema,
-} from "@/components/SignupPersonal/SignUpReducer";
+import { fieldNameMap, PersonalInfoSchema } from "@/components/SignupPersonal/SignUpReducer";
 import { getHtmlElementMapping } from "./Helper";
 import { useForm, SubmitHandler } from "react-hook-form";
 import AlertPop from "../Common/AlertPop";
