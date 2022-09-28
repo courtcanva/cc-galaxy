@@ -20,10 +20,6 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
   const onSubmit: SubmitHandler<FormState> = (data) => console.log(data);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    console.log(e.target.value);
-  };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl>
@@ -44,9 +40,7 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
                   width: "360px",
                   placeholder: `Enter ${properFieldName}`,
                   key: "input " + idx,
-                  ...register(val as keyof FormState, {
-                    onChange: handleChange,
-                  }),
+                  ...register(val as keyof FormState, {}),
                 })}
               {errors[val as keyof FormState] && (
                 <AlertPop title={errors[val as keyof FormState]!.message || "Input error"} />
