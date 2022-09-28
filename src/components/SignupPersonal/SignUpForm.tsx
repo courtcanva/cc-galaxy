@@ -25,26 +25,15 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
   } = useForm<FormState>({ resolver: zodResolver(PersonalInfoSchema) });
 
   const onSubmit: SubmitHandler<FormState> = (data) => console.log(data);
-
-  const [formState, dispatch] = useReducer(SignUpReducer, initialFormState, (s: any): any => s);
-  const [isSignUpFail, setIsSignUpFail] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { signUpRequest } = SignUpAction();
-  const { firstName, lastName, phoneNumber, residentialAddress, postcode, state } = formState;
-  const isInvalid =
-    !firstName || !lastName || !phoneNumber || !residentialAddress || !postcode || !state;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    dispatch({
-      type: FormActionKind.HANDLE_SIGNUP_INPUT,
-      field: e.target.name,
-      payload: e.target.value.trim(),
-    });
+    console.log(e.target.value);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isInvalid={isSignUpFail}>
+      <FormControl>
         {Object.keys(initialFormState).map((val, idx) => {
           // type casting
           // see: https://stackoverflow.com/a/64136988
@@ -74,7 +63,7 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
         })}
       </FormControl>
 
-      <Button type="submit" disabled={isInvalid} isLoading={isLoading}>
+      <Button type="submit" isLoading={isLoading}>
         Sign up
       </Button>
       <input type="submit" />
