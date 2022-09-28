@@ -18,7 +18,7 @@ const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
   watch();
 
   const onSubmit: SubmitHandler<FormState> = (data) => console.log(data);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading] = useState<boolean>(false);
 
   return isLoggedIn ? (
     <p>You have already logged in</p>
@@ -45,7 +45,8 @@ const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
                   ...register(val as keyof FormState, {}),
                 })}
               {errors[val as keyof FormState] && (
-                <AlertPop title={errors[val as keyof FormState]!.message || "Input error"} />
+                // use ? instead of ! so that eslint won't complain
+                <AlertPop title={errors[val as keyof FormState]?.message || "Input error"} />
               )}
             </div>
           );

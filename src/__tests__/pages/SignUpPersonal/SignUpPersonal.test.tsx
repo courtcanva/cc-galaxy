@@ -10,10 +10,6 @@ describe("Personal Sign Up Page", () => {
     renderWithMockedProvider(<SignUpPersonal />);
     expect(screen.getByText("Residential Address")).toBeInTheDocument();
   });
-  test("should render personal signup page success", () => {
-    renderWithMockedProvider(<SignUpPersonal />);
-    expect(screen.getByText("Residential Address")).toBeInTheDocument();
-  });
 });
 
 describe("Testing onChange functions", () => {
@@ -21,12 +17,18 @@ describe("Testing onChange functions", () => {
     // Rendering the component and its tree
     renderWithMockedProvider(<SignUpPersonal />);
     // Extracting the child, username_input component with his accessibilityLabel
-    const firstNameInput = screen.getByLabelText("First Name");
-    const lastNameInput = screen.getByLabelText("Last Name");
-    const phoneNumberInput = screen.getByLabelText("Phone number");
-    const residentialAddressInput = screen.getByLabelText("Residential Address");
-    const postcodeInput = screen.getByLabelText("Postcode");
-    const stateInput = screen.getByLabelText("State");
+    const firstNameInput: HTMLInputElement = screen.getByLabelText(
+      "First Name"
+    ) as HTMLInputElement;
+    const lastNameInput: HTMLInputElement = screen.getByLabelText("Last Name") as HTMLInputElement;
+    const phoneNumberInput: HTMLInputElement = screen.getByLabelText(
+      "Phone number"
+    ) as HTMLInputElement;
+    const residentialAddressInput: HTMLInputElement = screen.getByLabelText(
+      "Residential Address"
+    ) as HTMLInputElement;
+    const postcodeInput: HTMLInputElement = screen.getByLabelText("Postcode") as HTMLInputElement;
+    const stateInput: HTMLInputElement = screen.getByLabelText("State") as HTMLInputElement;
     // Fire a native changeText event with a specific value
     fireEvent.change(firstNameInput, { target: { value: "Jane" } });
     fireEvent.change(lastNameInput, { target: { value: "Doe" } });
@@ -39,7 +41,6 @@ describe("Testing onChange functions", () => {
     expect(phoneNumberInput.value).toBe("0439493939");
     expect(residentialAddressInput.value).toBe("test");
     expect(postcodeInput.value).toBe("test");
-    //  FIXME: this is not right
     expect(stateInput.value).toBe("QLD");
   });
 });
