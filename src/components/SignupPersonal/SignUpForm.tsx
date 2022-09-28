@@ -8,7 +8,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import AlertPop from "../Common/AlertPop";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
+const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
   const {
     register,
     handleSubmit,
@@ -20,7 +20,9 @@ const SignUpForm = ({ loginStatus }: SignUpFormProps) => {
   const onSubmit: SubmitHandler<FormState> = (data) => console.log(data);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  return (
+  return isLoggedIn ? (
+    <p>You have already logged in</p>
+  ) : (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl>
         {Object.keys(initialFormState).map((val, idx) => {

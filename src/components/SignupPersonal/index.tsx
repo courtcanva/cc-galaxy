@@ -44,7 +44,7 @@ const SignUp: React.FC = () => {
             </Flex>
 
             <Flex>
-              <SignUpForm loginStatus={() => true} />
+              <SignUpForm isLoggedIn={false} />
             </Flex>
           </Flex>
         </Flex>
