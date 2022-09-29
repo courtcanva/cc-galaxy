@@ -1,6 +1,5 @@
 import React from "react";
 import renderWithMockedProvider from "../../testHelper";
-import user from "@testing-library/user-event";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import SignUpPersonal from "../../../pages/sign-up";
 import SignUpForm from "@/components/SignupPersonal/SignUpForm";
@@ -60,8 +59,8 @@ describe("Testing form validation", () => {
   it("should show warning", async () => {
     // Rendering the component and its tree
     renderWithMockedProvider(<SignUpPersonal />);
-    const submitBtn = screen.getByText("Sign up");
-    user.click(submitBtn);
+    const form: HTMLFormElement = screen.getByRole("form");
+    form.submit();
 
     // Checking the rendered value
     await waitFor(() =>

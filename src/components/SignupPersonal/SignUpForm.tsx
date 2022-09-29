@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Button, FormControl, FormLabel } from "@chakra-ui/react";
+import React from "react";
+import { Container, FormControl, FormLabel } from "@chakra-ui/react";
 import { initialFormState, FormState } from "@/components/SignupPersonal/SignUpLogic";
 import { SignUpFormProps } from "./SignUpFormProps";
 import { fieldNameMap, PersonalInfoSchema } from "@/components/SignupPersonal/SignUpLogic";
@@ -18,12 +18,11 @@ const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
   watch();
 
   const onSubmit: SubmitHandler<FormState> = (data) => console.log(data);
-  const [isLoading] = useState<boolean>(false);
 
   return isLoggedIn ? (
     <p>You have already logged in</p>
   ) : (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} role={"form"}>
       <FormControl>
         {Object.keys(initialFormState).map((val, idx) => {
           // type casting
@@ -52,10 +51,6 @@ const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
           );
         })}
       </FormControl>
-
-      <Button type="submit" isLoading={isLoading}>
-        Sign up
-      </Button>
     </form>
   );
 };
