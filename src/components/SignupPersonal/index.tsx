@@ -1,48 +1,8 @@
 import React from "react";
-import HeaderLayout from "@/layouts/HeaderLayout";
 import SignUpForm from "./SignUpForm";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
 
 const SignUp: React.FC = () => {
-  return (
-    <HeaderLayout>
-      <Flex alignItems="center" background="#114458">
-        <Flex justifyContent="center" alignItems="center" position="relative">
-          <Box background="background.secondary" position="absolute" transform="rotate(-3deg)" />
-
-          <Image
-            src="./login/login-image.png"
-            zIndex="10"
-            alt="login-image"
-            transform="translateX(-5px)"
-          />
-
-          <Flex
-            flexDir="column"
-            alignItems="center"
-            justifyContent="flex-start"
-            background="white"
-            zIndex="10"
-          >
-            <Flex flexDir="column" alignItems="center" justifyContent="flex-start" marginTop="50px">
-              <Image boxSize="64px" alt="dashboard-logo-192x192" src="dashboard-logo-192x192.png" />
-              <Text marginTop="10px" color="brand.secondary">
-                CourtCanva
-              </Text>
-            </Flex>
-
-            <Flex>
-              <Text>Please fill in your personal information</Text>
-            </Flex>
-
-            <Flex>
-              <SignUpForm isLoggedIn={false} />
-            </Flex>
-          </Flex>
-        </Flex>
-      </Flex>
-    </HeaderLayout>
-  );
+  return <SignUpForm isLoggedIn={false} />;
 };
 
 export default SignUp;
