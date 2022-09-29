@@ -2,7 +2,7 @@ import React from "react";
 import HeaderLayout from "../../layouts/HeaderLayout";
 import SignUpForm from "./SignUpForm";
 
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 
 const SignUp: React.FC = () => {
   return (

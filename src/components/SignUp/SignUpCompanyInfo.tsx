@@ -10,7 +10,7 @@ import SignUpReducer, { FormActionKind, initialFormState } from "@/components/Si
 // import SignUpActions from "./SignUpAction";
 
 interface SignUpFromProps {
-  buttonStatus: (arg0: boolean) => boolean | void;
+  buttonStatus: (arg0: number) => number | void;
 }
 
 const SignUpCompanyInfo = ({ buttonStatus }: SignUpFromProps) => {
@@ -73,7 +73,7 @@ const SignUpCompanyInfo = ({ buttonStatus }: SignUpFromProps) => {
 
   const handleButtonStatus =() => {
     if(!isEmailExisted && isChecked && isPwdValid){
-      buttonStatus(false);//set button isDisabled to false
+      buttonStatus(1);//set button isDisabled to 1
     }
   }
 
