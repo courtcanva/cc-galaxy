@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 import HeaderLayout from "../layouts/HeaderLayout";
 import { Box } from "@chakra-ui/react";
-import SignUp from "../components/SignupPersonal/index";
+import SignUpPersonal from "../components/SignupPersonal/index";
 
 const SignUpPage: NextPage = () => {
   return (
     <HeaderLayout>
       <Box as="main">
-        <SignUp />
+        <SignUpPersonal />
       </Box>
     </HeaderLayout>
   );

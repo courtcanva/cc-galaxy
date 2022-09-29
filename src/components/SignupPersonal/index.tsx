@@ -1,8 +1,8 @@
 import React from "react";
 import SignUpForm from "./SignUpForm";
 
-const SignUp: React.FC = () => {
+const SignUpPersonal: React.FC = () => {
   return <SignUpForm isLoggedIn={false} onSubmit={(data) => console.log(data)} />;
 };
 
-export default SignUp;
+export default SignUpPersonal;
