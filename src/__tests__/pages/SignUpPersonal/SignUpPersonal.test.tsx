@@ -74,12 +74,12 @@ describe("Testing form validation", () => {
     );
     await waitFor(() =>
       expect(
-        screen.getByText("The Phone Number does not match required format")
+        screen.getByText("The Phone Number does not match required format. Example: 0411111111")
       ).toBeInTheDocument()
     );
     await waitFor(() =>
       expect(
-        screen.getByText("The Postcode does not match the required format")
+        screen.getByText("The Postcode does not match the required format. Example: 4000")
       ).toBeInTheDocument()
     );
     await waitFor(() =>
@@ -87,6 +87,11 @@ describe("Testing form validation", () => {
         screen.getByText(
           "Invalid enum value. Expected 'QLD' | 'VIC' | 'NSW' | 'NT' | 'SA' | 'ACT' | 'TAS' | 'WA', received ''"
         )
+      ).toBeInTheDocument()
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByText("You need to provide a valid residential address")
       ).toBeInTheDocument()
     );
   });

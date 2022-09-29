@@ -45,12 +45,16 @@ export const PersonalInfoSchema = z.object({
   lastName: z
     .string({ required_error: requiredErrorMsg })
     .min(1, { message: "Last name must contain at least 1 character(s)" }),
-  phoneNumber: z
+  phoneNumber: z.string({ required_error: requiredErrorMsg }).regex(phoneNumberRegex, {
+    message: "The Phone Number does not match required format. Example: 0411111111",
+  }),
+  postcode: z.string({ required_error: requiredErrorMsg }).regex(postcodeRegex, {
+    message: "The Postcode does not match the required format. Example: 4000",
+  }),
+  state: z.enum(stateList, {
+    required_error: requiredErrorMsg,
+  }),
+  residentialAddress: z
     .string({ required_error: requiredErrorMsg })
-    .regex(phoneNumberRegex, { message: "The Phone Number does not match required format" }),
-  postcode: z
-    .string({ required_error: requiredErrorMsg })
-    .regex(postcodeRegex, { message: "The Postcode does not match the required format" }),
-  state: z.enum(stateList, { required_error: requiredErrorMsg }),
-  residentialAddress: z.string({ required_error: requiredErrorMsg }),
+    .min(10, { message: "You need to provide a valid residential address" }),
 });
