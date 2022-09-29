@@ -1,10 +1,10 @@
-import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertDescription } from "@chakra-ui/react";
 
 export default function AlertPop(props: { title: string }) {
   return (
-    <Alert status="error">
+    <Alert size={"sm"} status="error">
       <AlertIcon />
-      <AlertTitle mr={"auto"}>{props.title}</AlertTitle>
+      <AlertDescription mr={"auto"}>{props.title}</AlertDescription>
     </Alert>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, FormControl, FormLabel } from "@chakra-ui/react";
+import { Container, Button, FormControl, FormLabel } from "@chakra-ui/react";
 import { initialFormState, FormState } from "@/components/SignupPersonal/SignUpReducer";
 import { SignUpFormProps } from "./SignUpFormProps";
 import { fieldNameMap, PersonalInfoSchema } from "@/components/SignupPersonal/SignUpReducer";
@@ -31,7 +31,7 @@ const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
           const properFieldName = fieldNameMap[val as keyof typeof fieldNameMap];
           const elemRenderer = getHtmlElementMapping(val);
           return (
-            <div key={`div-${idx}`}>
+            <Container key={`div-${idx}`} width={"40vw"}>
               <FormLabel htmlFor={`${val}${idx}`} key={"label " + idx} id={`label ${idx}`}>
                 {properFieldName}
               </FormLabel>
@@ -39,7 +39,7 @@ const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
                 elemRenderer({
                   id: `${val}${idx}`,
                   size: "sm",
-                  width: "360px",
+                  width: "100%",
                   placeholder: `Enter ${properFieldName}`,
                   key: "input " + idx,
                   ...register(val as keyof FormState, {}),
@@ -48,7 +48,7 @@ const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
                 // use ? instead of ! so that eslint won't complain
                 <AlertPop title={errors[val as keyof FormState]?.message || "Input error"} />
               )}
-            </div>
+            </Container>
           );
         })}
       </FormControl>
