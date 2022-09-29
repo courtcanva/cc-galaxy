@@ -1,5 +1,5 @@
 import { Textarea, Input, Select } from "@chakra-ui/react";
-import { stateList } from "./SignUpReducer";
+import { stateList } from "./SignUpLogic";
 
 const htmlElementMapping = {
   residentialAddress: (props: object) => <Textarea {...props}></Textarea>,
