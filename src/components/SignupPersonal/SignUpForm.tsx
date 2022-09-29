@@ -4,11 +4,11 @@ import { initialFormState, FormState } from "@/components/SignupPersonal/SignUpL
 import { SignUpFormProps } from "./SignUpFormProps";
 import { fieldNameMap, PersonalInfoSchema } from "@/components/SignupPersonal/SignUpLogic";
 import { getHtmlElementMapping } from "./Helper";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import AlertPop from "../Common/AlertPop";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
+const SignUpForm = ({ isLoggedIn, onSubmit }: SignUpFormProps) => {
   const {
     register,
     handleSubmit,
@@ -16,8 +16,6 @@ const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
     formState: { errors },
   } = useForm<FormState>({ resolver: zodResolver(PersonalInfoSchema) });
   watch();
-
-  const onSubmit: SubmitHandler<FormState> = (data) => console.log(data);
 
   return isLoggedIn ? (
     <p>You have already logged in</p>

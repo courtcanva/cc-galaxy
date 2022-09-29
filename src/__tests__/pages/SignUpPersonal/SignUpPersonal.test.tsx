@@ -3,6 +3,8 @@ import renderWithMockedProvider from "../../testHelper";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import SignUpPersonal from "../../../pages/sign-up";
 import SignUpForm from "@/components/SignupPersonal/SignUpForm";
+import { SubmitHandler } from "react-hook-form";
+import { FormState } from "@/components/SignupPersonal/SignUpLogic";
 
 describe("Personal Sign Up Page", () => {
   it("should render personal signup page success", () => {
@@ -45,12 +47,13 @@ describe("Testing onChange functions", () => {
 });
 
 describe("Testing Sign Up Form", () => {
+  const onSubmit: SubmitHandler<FormState> = (data) => console.log(data);
   it("should render form", () => {
-    renderWithMockedProvider(<SignUpForm isLoggedIn={false} />);
+    renderWithMockedProvider(<SignUpForm isLoggedIn={false} onSubmit={onSubmit} />);
     expect(screen.getByText("Residential Address")).toBeInTheDocument();
   });
   it("should render prompt", () => {
-    renderWithMockedProvider(<SignUpForm isLoggedIn={true} />);
+    renderWithMockedProvider(<SignUpForm isLoggedIn={true} onSubmit={onSubmit} />);
     expect(screen.getByText("You have already logged in")).toBeInTheDocument();
   });
 });
