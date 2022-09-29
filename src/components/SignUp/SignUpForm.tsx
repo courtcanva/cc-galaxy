@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import HeaderLayout from "../../layouts/HeaderLayout";
 import { 
   Box, 
+  Tab, 
   Tabs, 
+  TabList,  
   TabPanels, 
   TabPanel, 
   Button, 
@@ -12,8 +14,13 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderMark,
-  Stack} from "@chakra-ui/react";
+  Stack,
+  Image,
+  Text} from "@chakra-ui/react";
 import SignUpFirstStep from "./SignUpFirstStep";
+import SignUpCompanyInfo from "./SignUpCompanyInfo";
+import SignUpPersonalInfo from "./SignUpPersonalInfo";
+
 
 const SignUpForm = () => {
   const [tabIndex, setTabIndex] = useState(0);
@@ -24,9 +31,9 @@ const SignUpForm = () => {
       fontSize: 'sm',
     }
 
-  // const handleTabsChange = (index: number) => {
-  //   setTabIndex(index);
-  // };
+  const handleTabsChange = (index: number) => {
+    setTabIndex(index);
+  };
 
   const handleNextButton = () => {
     if (tabIndex < 2){
@@ -35,65 +42,69 @@ const SignUpForm = () => {
   };
 
   const handleBackButton = () => {
-    setTabIndex(tabIndex-1);
+    if (tabIndex > 0){
+      setTabIndex(tabIndex-1);
+    }
   };
 
   return (
-    <HeaderLayout>
-      <Box>
-        <Tabs index={tabIndex}>
-          <TabPanels>
-            <TabPanel>
-              <SignUpFirstStep
-                buttonStatus={(isDisabled: boolean): boolean | void => setIsDisabled(isDisabled)}
-              />
-            </TabPanel>
-            <TabPanel>
-              <p>Yeah yeah. What's up?</p>
-            </TabPanel>
-            <TabPanel>
-              <p>Oh, hello there.</p>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
-        <Flex justifyContent="center" alignItems="center" direction="column" >
-          <Slider aria-label='slider-ex-6' value={tabIndex} min={0} max={2} step={1} isDisabled= {true} height={45}>
-            <SliderMark value={0.03} {...labelStyles}>
-              Step 1
-            </SliderMark>
-            <SliderMark value={0.91} {...labelStyles}>
-              Step 2
-            </SliderMark>
-            <SliderMark value={1.82} {...labelStyles}>
-              Step 3
-            </SliderMark>
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <SliderThumb />
-          </Slider>
-          <Stack direction='row' spacing={4} align='center'>
-            {tabIndex === 0 ? (
-            <Button
-              colorScheme="green"
-              disabled={isDisabled}
-              onClick={handleNextButton}
-            >Next
-            </Button>) : (
-            <><Button 
-            colorScheme="green"
-            onClick={handleBackButton}
-            >Back</Button>
-            <Button
-            colorScheme="gray"
-            disabled={isDisabled}
-            onClick={handleNextButton}
-            >Next
-            </Button></>) }
-          </Stack>
-        </Flex>
-      </Box>
-    </HeaderLayout>
+    <Flex>
+      <Flex flexDir="column" alignItems="center">
+        <Image boxSize="64px" alt="dashboard-logo-192x192" src="dashboard-logo-192x192.png" />
+        <Text marginTop="10px" color="brand.secondary">
+          CourtCanva
+        </Text>
+      </Flex>
+      <Flex flexDir="column" alignItems="center">
+        <Text lineHeight="24px" fontSize="16px" fontWeight="400">
+          Register with CourtCanva as our franchisee
+        </Text>
+      </Flex>
+      <Tabs align='center' index={tabIndex} onChange={handleTabsChange}>
+        <TabList>
+          <Tab>Step 1</Tab>
+          <Tab>Step 2</Tab>
+          <Tab>Step 3</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <SignUpFirstStep
+              buttonStatus={(isDisabled: boolean): boolean | void => setIsDisabled(isDisabled)}
+            />
+          </TabPanel>
+          <TabPanel>
+            <SignUpCompanyInfo 
+              buttonStatus={(isDisabled: boolean): boolean | void => setIsDisabled(isDisabled)}
+            />
+          </TabPanel>
+          <TabPanel>
+            <SignUpPersonalInfo 
+              buttonStatus={(isDisabled: boolean): boolean | void => setIsDisabled(isDisabled)}
+            />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+      
+      <Stack direction='row' spacing={4} align='center'>
+        {tabIndex === 0 ? (
+        <Button
+          colorScheme='green'
+          disabled={isDisabled}
+          onClick={handleNextButton}
+        >Next
+        </Button>) : (
+        <><Button 
+        colorScheme='green'
+        onClick={handleBackButton}
+        >Back</Button>
+        <Button
+        colorScheme='gray'
+        disabled={isDisabled}
+        onClick={handleNextButton}
+        >Next
+        </Button></>) }
+      </Stack>
+    </Flex>
   );
 };
 export default SignUpForm;

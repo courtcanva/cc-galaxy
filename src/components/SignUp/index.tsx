@@ -9,50 +9,33 @@ const SignUp: React.FC = () => {
     <HeaderLayout>
       <Flex
         width="100vw"
-        height="100vh"
+        paddingTop="5vh"
+        paddingBottom="5vh"
         justifyContent="center"
         alignItems="center"
         background="linear-gradient(116.82deg, #124458 0%, rgba(108, 150, 183, 0.9) 100%)"
       >
-        <Flex justifyContent="center" alignItems="center" position="relative">
-          {/* <Box
-            width="1280px"
-            height="710px"
-            background="background.secondary"
-            position="absolute"
-            transform="rotate(-3deg)"
-          /> */}
-          <Image
+          <Flex width="47vw" alignSelf="stretch">
+            <Image
             src="./login/login-image.png"
             zIndex="9"
             alt="login-image"
-            transform="translateX(7px)"
-          />
+            transform="translateX(1vw)"
+            objectFit="cover"
+            />
+          </Flex>
           <Flex
-            width="629px"
-            height="682px"
+            width="47vw"
             flexDir="column"
             alignItems="center"
+            justifyContent="center"
             background="white"
             zIndex="10"
-            transform="translateX(-7px)"
+            transform="translateX(-1vw)"
+            alignSelf="stretch"
           >
-            <Flex flexDir="column" alignItems="center" marginTop="50px">
-              <Image boxSize="64px" alt="dashboard-logo-192x192" src="dashboard-logo-192x192.png" />
-              <Text marginTop="10px" color="brand.secondary">
-                CourtCanva
-              </Text>
-            </Flex>
-            <Flex flexDir="column" alignItems="center">
-              <Text lineHeight="24px" fontSize="16px" fontWeight="400">
-                Register with CourtCanva as our franchisee
-              </Text>
-            </Flex>
-            <Flex>
-              <SignUpForm />
-            </Flex>
+            <SignUpForm />
           </Flex>
-        </Flex>
       </Flex>
     </HeaderLayout>
   );

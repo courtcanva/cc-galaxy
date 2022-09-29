@@ -13,7 +13,7 @@ interface SignUpFromProps {
   buttonStatus: (arg0: boolean) => boolean | void;
 }
 
-const SignUpFirstStep = ({ buttonStatus }: SignUpFromProps) => {
+const SignUpCompanyInfo = ({ buttonStatus }: SignUpFromProps) => {
   const { SignUpProps } = initialFormState;
   const [state, dispatch] = useReducer(SignUpReducer, SignUpProps);
   const [isEmailExisted, setIsEmailExisted] = useState<boolean>(false);
@@ -110,8 +110,20 @@ const SignUpFirstStep = ({ buttonStatus }: SignUpFromProps) => {
           </FormErrorMessage>
         )}
       </FormControl>
+      <FormControl>
+        <FormLabel>1</FormLabel>
+        <Input />
+        
+        <FormLabel>2</FormLabel>
+        <Input />
+        <FormLabel>3</FormLabel>
+        <Input />
+        
+        <FormLabel>4</FormLabel>
+        <Input />
+      </FormControl>
     </form>
   );
 };
 
-export default SignUpFirstStep;
+export default SignUpCompanyInfo;
