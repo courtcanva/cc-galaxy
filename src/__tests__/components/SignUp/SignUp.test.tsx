@@ -2,8 +2,24 @@ import renderWithMockedProvider from "../../testHelper";
 import { screen, waitFor } from "@testing-library/react";
 import SignUpFirstStep from "@/components/SignUp/SignUpFirstStep";
 import userEvent from "@testing-library/user-event";
+import SignUpForm from "@/components/SignUp/SignUpForm";
 
 describe("SignUp", () => {
+  // it("S", async () => {
+  //   renderWithMockedProvider(<SignUpForm />);
+  //   await waitFor(() => {
+  //     const emailInputEl = screen.getByRole("emailInput");
+  //     const pwdInputEl = screen.getByRole("pwdInput");
+  //     const repwdInputEl = screen.getByRole("repwdInput");
+  //     expect(emailInputEl).toBeInTheDocument();
+  //     expect(pwdInputEl).toBeInTheDocument();
+  //     expect(repwdInputEl).toBeInTheDocument();
+  //     expect(
+  //       screen.getByText("Enter the email you would like to use as username")
+  //     ).toBeInTheDocument();
+  //   });
+  // });
+
   it("Should display email, pwd, re-pwd inputs", async () => {
     renderWithMockedProvider(<SignUpFirstStep buttonStatus={() => void {}} />);
 
