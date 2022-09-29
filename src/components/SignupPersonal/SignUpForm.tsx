@@ -40,7 +40,7 @@ const SignUpForm = ({ isLoggedIn }: SignUpFormProps) => {
                   size: "sm",
                   width: "100%",
                   placeholder: `Enter ${properFieldName}`,
-                  key: "input " + idx,
+                  key: `input ${idx}`,
                   ...register(val as keyof FormState, {}),
                 })}
               {errors[val as keyof FormState] && (
