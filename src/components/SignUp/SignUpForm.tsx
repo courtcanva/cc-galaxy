@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import HeaderLayout from "../../layouts/HeaderLayout";
-import { 
-  Box, 
-  Tab, 
-  Tabs, 
-  TabList,  
-  TabPanels, 
-  TabPanel, 
-  Button, 
+import {
+  Box,
+  Tab,
+  Tabs,
+  TabList,
+  TabPanels,
+  TabPanel,
+  Button,
   Flex,
   Slider,
   SliderTrack,
@@ -16,34 +16,34 @@ import {
   SliderMark,
   Stack,
   Image,
-  Text} from "@chakra-ui/react";
+  Text,
+} from "@chakra-ui/react";
 import SignUpFirstStep from "./SignUpFirstStep";
 import SignUpCompanyInfo from "./SignUpCompanyInfo";
 import SignUpPersonalInfo from "./SignUpPersonalInfo";
-
 
 const SignUpForm = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [isDisabled, setIsDisabled] = useState(true);
   const labelStyles = {
-      mt: '-3.5',
-      ml: '-2.5',
-      fontSize: 'sm',
-    }
+    mt: "-3.5",
+    ml: "-2.5",
+    fontSize: "sm",
+  };
 
   const handleTabsChange = (index: number) => {
     setTabIndex(index);
   };
 
   const handleNextButton = () => {
-    if (tabIndex < 2){
-      setTabIndex(tabIndex+1);
+    if (tabIndex < 2) {
+      setTabIndex(tabIndex + 1);
     }
   };
 
   const handleBackButton = () => {
-    if (tabIndex > 0){
-      setTabIndex(tabIndex-1);
+    if (tabIndex > 0) {
+      setTabIndex(tabIndex - 1);
     }
   };
 
@@ -60,7 +60,7 @@ const SignUpForm = () => {
           Register with CourtCanva as our franchisee
         </Text>
       </Flex>
-      <Tabs align='center' index={tabIndex} onChange={handleTabsChange}>
+      <Tabs align="center" index={tabIndex} onChange={handleTabsChange}>
         <TabList>
           <Tab>Step 1</Tab>
           <Tab>Step 2</Tab>
@@ -73,36 +73,33 @@ const SignUpForm = () => {
             />
           </TabPanel>
           <TabPanel>
-            <SignUpCompanyInfo 
+            <SignUpCompanyInfo
               buttonStatus={(isDisabled: boolean): boolean | void => setIsDisabled(isDisabled)}
             />
           </TabPanel>
           <TabPanel>
-            <SignUpPersonalInfo 
+            <SignUpPersonalInfo
               buttonStatus={(isDisabled: boolean): boolean | void => setIsDisabled(isDisabled)}
             />
           </TabPanel>
         </TabPanels>
       </Tabs>
-      
-      <Stack direction='row' spacing={4} align='center'>
+
+      <Stack direction="row" spacing={4} align="center">
         {tabIndex === 0 ? (
-        <Button
-          colorScheme='green'
-          disabled={isDisabled}
-          onClick={handleNextButton}
-        >Next
-        </Button>) : (
-        <><Button 
-        colorScheme='green'
-        onClick={handleBackButton}
-        >Back</Button>
-        <Button
-        colorScheme='gray'
-        disabled={isDisabled}
-        onClick={handleNextButton}
-        >Next
-        </Button></>) }
+          <Button colorScheme="green" disabled={isDisabled} onClick={handleNextButton}>
+            Next
+          </Button>
+        ) : (
+          <>
+            <Button colorScheme="green" onClick={handleBackButton}>
+              Back
+            </Button>
+            <Button colorScheme="gray" disabled={isDisabled} onClick={handleNextButton}>
+              Next
+            </Button>
+          </>
+        )}
       </Stack>
     </Flex>
   );

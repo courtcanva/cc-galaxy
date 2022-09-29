@@ -1,11 +1,5 @@
 import React, { useReducer, useState } from "react";
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  FormHelperText,
-  FormErrorMessage,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, FormHelperText, FormErrorMessage } from "@chakra-ui/react";
 import SignUpReducer, { FormActionKind, initialFormState } from "@/components/SignUp/SignUpReducer";
 // import SignUpActions from "./SignUpAction";
 
@@ -70,12 +64,11 @@ const SignUpFirstStep = ({ buttonStatus }: SignUpFromProps) => {
     console.log(password);
   };
 
-
-  const handleButtonStatus =() => {
-    if(!isEmailExisted && isChecked && isPwdValid){
-      buttonStatus(false);//set button isDisabled to false
+  const handleButtonStatus = () => {
+    if (!isEmailExisted && isChecked && isPwdValid) {
+      buttonStatus(false); //set button isDisabled to false
     }
-  }
+  };
 
   return (
     <form onChange={handleButtonStatus}>
@@ -83,6 +76,7 @@ const SignUpFirstStep = ({ buttonStatus }: SignUpFromProps) => {
         <FormLabel>Email</FormLabel>
         <Input
           name="email"
+          role="emailInput"
           type="email"
           placeholder="Enter email address"
           onChange={handleEmailTextChange}
@@ -96,17 +90,29 @@ const SignUpFirstStep = ({ buttonStatus }: SignUpFromProps) => {
       </FormControl>
       <FormControl isInvalid={!isPwdValid} isRequired>
         <FormLabel>Password</FormLabel>
-        <Input name="password" type="password" placeholder="Enter Password" onChange={handlePwdTextChange} />
+        <Input
+          name="password"
+          role="pwdInput"
+          type="password"
+          placeholder="Enter Password"
+          onChange={handlePwdTextChange}
+        />
         {isPwdValid ? null : (
-          <FormErrorMessage>
-            Use 8 or more characters (a combination of letters, numbers and symbols)
+          <FormErrorMessage role="pwdErrorMessage">
+            Use 8 or more characters with a combination of letters, numbers and symbols
           </FormErrorMessage>
         )}
         <FormLabel>Confirm Password</FormLabel>
-        <Input name="password" type="password" placeholder="Confirm Password" onChange={handlePwdTextChange} />
+        <Input
+          name="rePassword"
+          type="password"
+          role="repwdInput"
+          placeholder="Confirm Password"
+          onChange={handlePwdTextChange}
+        />
         {isPwdValid ? null : (
-          <FormErrorMessage>
-            Use 8 or more characters (a combination of letters, numbers and symbols)
+          <FormErrorMessage role="repwdErrorMessage">
+            Use 8 or more characters with a combination of letters, numbers and symbols
           </FormErrorMessage>
         )}
       </FormControl>
