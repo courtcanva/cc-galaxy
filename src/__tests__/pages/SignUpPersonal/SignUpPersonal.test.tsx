@@ -29,7 +29,9 @@ describe("Testing onChange functions", () => {
       "Residential Address"
     ) as HTMLInputElement;
     const postcodeInput: HTMLInputElement = screen.getByLabelText("Postcode") as HTMLInputElement;
-    const stateInput: HTMLInputElement = screen.getByLabelText("State") as HTMLInputElement;
+    const stateInput: HTMLInputElement = screen.getByLabelText(
+      "State (AU Only)"
+    ) as HTMLInputElement;
     // Fire a native changeText event with a specific value
     fireEvent.change(firstNameInput, { target: { value: "Jane" } });
     fireEvent.change(lastNameInput, { target: { value: "Doe" } });

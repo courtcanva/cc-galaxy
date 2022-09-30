@@ -33,7 +33,7 @@ export const fieldNameMap: FieldMap = {
   lastName: "Last Name",
   phoneNumber: "Phone number",
   postcode: "Postcode",
-  state: "State",
+  state: "State (AU Only)",
   residentialAddress: "Residential Address",
 };
 
