@@ -17,26 +17,24 @@ const LoginForm = () => {
     formState: { errors },
     handleSubmit,
   } = useForm<FormData>();
-  const onSubmit = handleSubmit((data) => {
-    handleUserLogin(data);
+  const formSubmit = handleSubmit((data) => {
+    userLogin(data);
   });
 
-  const handleUserLogin = async (data: { username: string; password: string }) => {
+  const userLogin = async (data: { username: string; password: string }) => {
     setIsLoading(true);
-    const loginResponse = await loginRequest(data.username, data.password);
-    if (loginResponse?.status == 200) {
-      setIsLoading(false);
-    }
+    await loginRequest(data.username, data.password);
     setIsLoading(false);
   };
 
   return (
-    <form style={{ height: "400px", width: "360px" }} onSubmit={onSubmit}>
-      <FormLabel fontWeight="600">Email</FormLabel>
+    <form style={{ height: "400px", width: "360px" }} onSubmit={formSubmit}>
+      <FormLabel fontWeight="600">Username</FormLabel>
       <Input
-        type="email"
+        role="username"
+        type="username"
         {...register("username", {
-          required: "This is required input",
+          required: "Username is required",
         })}
       />
       <ErrorMessage
@@ -48,9 +46,10 @@ const LoginForm = () => {
         Password
       </FormLabel>
       <Input
+        role="password"
         type="password"
         {...register("password", {
-          required: "This is required input",
+          required: "Password is required",
         })}
       />
       <ErrorMessage
@@ -59,7 +58,7 @@ const LoginForm = () => {
         render={({ message }) => <p style={{ color: "red" }}>{message}</p>}
       />
       <Button variant={"loginBtn"} marginTop="32px" type="submit" isLoading={isLoading}>
-        Login in
+        Log in
       </Button>
     </form>
   );

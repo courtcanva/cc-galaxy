@@ -30,18 +30,15 @@ const Login: React.FC = () => {
                 CourtCanva
               </Text>
             </Flex>
-
             <Flex flexDir="column" alignItems="center">
               <Text fontSize="xl" fontWeight="700">
-                Log in to CourtCanva Admin
+                Log in to CourtCanva Franchisee
               </Text>
             </Flex>
-
             <Flex>
               <LoginForm />
             </Flex>
           </Flex>
-
           <Image
             src="./login/login-image.png"
             zIndex="10"
