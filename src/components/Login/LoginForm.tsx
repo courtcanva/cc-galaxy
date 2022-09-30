@@ -1,78 +1,64 @@
-import React, { useReducer, useState } from "react";
-import { Input, Button, FormControl, FormLabel } from "@chakra-ui/react";
-import LoginReducer, { FormActionKind, initialFormState } from "@/components/Login/LoginReducer";
+import { Button, FormLabel, Input } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 import loginAction from "./LoginAction";
 
-interface LoginFromProps {
-  loginStatus: (arg0: boolean) => boolean | void;
-}
+type FormData = {
+  username: string;
+  password: string;
+};
 
-const LoginForm = ({ loginStatus }: LoginFromProps) => {
-  const { loginProps } = initialFormState;
-  const [state, dispatch] = useReducer(LoginReducer, loginProps);
-  const [isLoginFail, setIsLoginFail] = useState<boolean>(false);
+const LoginForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { loginRequest } = loginAction();
-  const { email, password } = state;
-  const isInvalid = !email || !password;
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<FormData>();
+  const onSubmit = handleSubmit((data) => {
+    handleUserLogin(data);
+  });
 
-  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsLoginFail(false);
-    loginStatus(false);
-    dispatch({
-      type: FormActionKind.HANDLE_LOGIN_INPUT,
-      field: e.target.name,
-      payload: e.target.value.trim(),
-    });
-  };
-
-  const handleUserLogin = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setIsLoginFail(false);
+  const handleUserLogin = async (data: { username: string; password: string }) => {
     setIsLoading(true);
-    const loginResponse = await loginRequest(email, password);
-
-    if (loginResponse?.status !== 200) {
-      setIsLoginFail(true);
-      loginStatus(true);
+    const loginResponse = await loginRequest(data.username, data.password);
+    if (loginResponse?.status == 200) {
       setIsLoading(false);
-      return;
     }
-
     setIsLoading(false);
   };
 
   return (
-    <form onSubmit={handleUserLogin}>
-      <FormControl isInvalid={isLoginFail}>
-        <FormLabel htmlFor="email" fontWeight="600">
-          Email
-        </FormLabel>
-        <Input
-          type="email"
-          name="email"
-          size="md"
-          width="360px"
-          placeholder="Enter Email"
-          onChange={handleTextChange}
-        />
-      </FormControl>
-
-      <FormControl isInvalid={isLoginFail}>
-        <FormLabel htmlFor="password" fontWeight="600" marginTop="25px">
-          Password
-        </FormLabel>
-        <Input
-          type="password"
-          name="password"
-          size="md"
-          width="360px"
-          placeholder="Enter Password"
-          onChange={handleTextChange}
-        />
-      </FormControl>
-
-      <Button variant={"loginBtn"} type="submit" disabled={isInvalid} isLoading={isLoading}>
+    <form style={{ height: "400px", width: "360px" }} onSubmit={onSubmit}>
+      <FormLabel fontWeight="600">Email</FormLabel>
+      <Input
+        type="email"
+        {...register("username", {
+          required: "This is required input",
+        })}
+      />
+      <ErrorMessage
+        errors={errors}
+        name="username"
+        render={({ message }) => <p style={{ color: "red" }}>{message}</p>}
+      />
+      <FormLabel marginTop="24px" fontWeight="600">
+        Password
+      </FormLabel>
+      <Input
+        type="password"
+        {...register("password", {
+          required: "This is required input",
+        })}
+      />
+      <ErrorMessage
+        errors={errors}
+        name="password"
+        render={({ message }) => <p style={{ color: "red" }}>{message}</p>}
+      />
+      <Button variant={"loginBtn"} marginTop="32px" type="submit" isLoading={isLoading}>
         Login in
       </Button>
     </form>

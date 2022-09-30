@@ -1,17 +1,9 @@
-import { api } from "@/utils/axios";
-import { AxiosRequestConfig } from "axios";
+import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { api } from "../../utils/axios";
 
-export interface AxiosResponse<T = object> {
-  data: object;
-  status: number;
-  statusText: string;
-  headers: Record<string, string>;
-  config: AxiosRequestConfig<T>;
-  request?: never;
-}
-
-export default function LoginActions() {
+export default function LoginAction() {
+  const toast = useToast();
   const router = useRouter();
   const getErrorMessage = (error: unknown) => {
     if (error instanceof Error) return error;
@@ -20,18 +12,43 @@ export default function LoginActions() {
 
   const loginRequest = async (email: string, password: string) => {
     try {
-      const response: AxiosResponse = await api("/admin/login", {
+      const response = await api("/admin/login", {
         method: "post",
         requestData: { email, password },
       });
-      if (typeof window !== "undefined") router.push("/");
+      if (response?.status === 200) {
+        toast({
+          position: "top",
+          title: "Login success",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+        router.push("/");
+      } else {
+        toast({
+          position: "top",
+          title: "Login Error",
+          description: "...",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      }
       return response;
     } catch (error) {
-      if (typeof window !== "undefined") router.push("/login");
       const err = getErrorMessage(error);
+      toast({
+        position: "top",
+        title: "Network Error",
+        description: err.message,
+        status: "error",
+        duration: 2000,
+        isClosable: true,
+      });
       return err.response;
     }
   };
 
-  return { loginRequest, getErrorMessage };
+  return { loginRequest };
 }
