@@ -15,27 +15,22 @@ const SignUp: React.FC = () => {
         alignItems="center"
         background="linear-gradient(116.82deg, #124458 0%, rgba(108, 150, 183, 0.9) 100%)"
       >
-          <Flex width="47vw" alignSelf="stretch">
-            <Image
-            src="./login/login-image.png"
-            zIndex="9"
-            alt="login-image"
-            transform="translateX(1vw)"
-            objectFit="cover"
-            />
+        <Flex width="87vw" justifyContent="center" alignItems="center">
+          <Flex zIndex="9" width="44vw" alignSelf="stretch">
+            <Image src="./login/login-image.png" alt="login-image" objectFit="cover" />
           </Flex>
           <Flex
-            width="47vw"
+            width="44vw"
             flexDir="column"
             alignItems="center"
             justifyContent="center"
             background="white"
             zIndex="10"
-            transform="translateX(-1vw)"
             alignSelf="stretch"
           >
             <SignUpForm />
           </Flex>
+        </Flex>
       </Flex>
     </HeaderLayout>
   );

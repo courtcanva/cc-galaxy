@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { 
-  Tab, 
-  Tabs, 
-  TabList,  
-  TabPanels, 
-  TabPanel, 
-  Button, 
+import {
+  Tab,
+  Tabs,
+  TabList,
+  TabPanels,
+  TabPanel,
+  Button,
   Flex,
   Stack,
   Image,
-  Text} from "@chakra-ui/react";
+  Text,
+} from "@chakra-ui/react";
 import SignUpInfoPage from "./SignUpInfoPage";
 import SignUpCompanyInfo from "./SignUpCompanyInfo";
 import SignUpPersonalInfo from "./SignUpPersonalInfo";
@@ -23,14 +24,14 @@ const SignUpForm = () => {
   };
 
   const handleNextButton = () => {
-    if (tabIndex < 2){
-      setTabIndex(tabIndex+1);
+    if (tabIndex < 2) {
+      setTabIndex(tabIndex + 1);
     }
   };
 
   const handleBackButton = () => {
-    if (tabIndex > 0){
-      setTabIndex(tabIndex-1);
+    if (tabIndex > 0) {
+      setTabIndex(tabIndex - 1);
     }
   };
 
@@ -43,7 +44,7 @@ const SignUpForm = () => {
       <Text margin="1vh" fontSize="16px" fontWeight="400">
         Register with CourtCanva as our franchisee
       </Text>
-      <Tabs marginTop="2.5vh" align='center' index={tabIndex} onChange={handleTabsChange}>
+      <Tabs isFitted marginTop="2.5vh" align="center" index={tabIndex} onChange={handleTabsChange}>
         <TabList marginBottom="2vh">
           <Tab>Step 1</Tab>
           <Tab>Step 2</Tab>
@@ -56,35 +57,41 @@ const SignUpForm = () => {
             />
           </TabPanel>
           <TabPanel>
-            <SignUpCompanyInfo 
+            <SignUpCompanyInfo
               buttonStatus={(isDisabled: number): number | void => setIsDisabled(isDisabled)}
             />
           </TabPanel>
           <TabPanel>
-            <SignUpPersonalInfo 
+            <SignUpPersonalInfo
               buttonStatus={(isDisabled: number): number | void => setIsDisabled(isDisabled)}
             />
           </TabPanel>
         </TabPanels>
       </Tabs>
-      <Stack direction='row' spacing={4} alignItems="center" justifyContent="center" >
+      <Stack direction="row" spacing="1vw" alignItems="center" justifyContent="center">
         {tabIndex === 0 ? (
-        <Button
-          colorScheme='green'
-          disabled={isDisabled===0?false:true}
-          onClick={handleNextButton}
-        >Next
-        </Button>) : (
-        <><Button 
-        colorScheme='green'
-        onClick={handleBackButton}
-        >Back</Button>
-        <Button
-        colorScheme='gray'
-        disabled={isDisabled===0?false:true}
-        onClick={handleNextButton}
-        >Next
-        </Button></>) }
+          <Button
+            width="100%"
+            colorScheme="green"
+            disabled={isDisabled === 0 ? false : true}
+            onClick={handleNextButton}
+          >
+            Next
+          </Button>
+        ) : (
+          <>
+            <Button colorScheme="green" onClick={handleBackButton}>
+              Back
+            </Button>
+            <Button
+              colorScheme="gray"
+              disabled={isDisabled === 0 ? false : true}
+              onClick={handleNextButton}
+            >
+              Next
+            </Button>
+          </>
+        )}
       </Stack>
     </Flex>
   );
