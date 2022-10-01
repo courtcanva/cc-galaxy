@@ -14,6 +14,7 @@ export interface FormState {
   lastName: string;
   phoneNumber: string;
   docType: null | DocTypeList;
+  fileUpload: string;
   residentialAddress: string;
   postcode: string;
   state: null | StateList;
@@ -24,6 +25,7 @@ export const initialFormState: FormState = {
   lastName: "",
   phoneNumber: "",
   docType: null,
+  fileUpload: "",
   postcode: "",
   state: null,
   residentialAddress: "",
@@ -38,6 +40,7 @@ export const fieldNameMap: FieldMap = {
   lastName: "Last Name",
   phoneNumber: "Phone number",
   docType: "Choose type of ID",
+  fileUpload: "",
   postcode: "Postcode",
   state: "State (AU Only)",
   residentialAddress: "Residential Address",

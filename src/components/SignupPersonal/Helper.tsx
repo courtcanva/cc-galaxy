@@ -1,4 +1,6 @@
 import {
+  InputGroup,
+  InputRightAddon,
   Textarea,
   Input,
   Select,
@@ -31,6 +33,15 @@ const htmlElementMapping = {
         ))}
       </Select>
       <FormHelperText>Currently supports passport or driver&#39;s license</FormHelperText>
+    </>
+  ),
+  fileUpload: (props: InputProps) => (
+    <>
+      <InputGroup size={props.size} key={props.key}>
+        <Input placeholder={props.placeholder} />
+        <InputRightAddon>...</InputRightAddon>
+      </InputGroup>
+      <FormHelperText>File only accecpt pdf/image within 10 MB</FormHelperText>
     </>
   ),
 };

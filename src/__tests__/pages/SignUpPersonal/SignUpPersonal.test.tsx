@@ -28,6 +28,9 @@ describe("Testing onChange functions", () => {
     const docTypeInput: HTMLInputElement = screen.getByLabelText(
       "Choose type of ID"
     ) as HTMLInputElement;
+    const fileUploadInput: HTMLInputElement = screen.getByPlaceholderText(
+      "Enter"
+    ) as HTMLInputElement;
     const residentialAddressInput: HTMLInputElement = screen.getByLabelText(
       "Residential Address"
     ) as HTMLInputElement;
@@ -40,6 +43,7 @@ describe("Testing onChange functions", () => {
     fireEvent.change(lastNameInput, { target: { value: "Doe" } });
     fireEvent.change(phoneNumberInput, { target: { value: "0439493939" } });
     fireEvent.change(docTypeInput, { target: { value: "Passport" } });
+    fireEvent.change(fileUploadInput, { target: { value: "test" } });
     fireEvent.change(residentialAddressInput, { target: { value: "test" } });
     fireEvent.change(postcodeInput, { target: { value: "test" } });
     fireEvent.change(stateInput, { target: { value: "QLD" } });
@@ -47,6 +51,7 @@ describe("Testing onChange functions", () => {
     expect(firstNameInput.value).toBe("Jane");
     expect(phoneNumberInput.value).toBe("0439493939");
     expect(docTypeInput.value).toBe("Passport");
+    expect(fileUploadInput.value).toBe("test");
     expect(residentialAddressInput.value).toBe("test");
     expect(postcodeInput.value).toBe("test");
     expect(stateInput.value).toBe("QLD");
