@@ -30,7 +30,7 @@ const htmlElementMapping = {
           </option>
         ))}
       </Select>
-      <FormHelperText>Currently supports passport or driver%#39;s license</FormHelperText>
+      <FormHelperText>Currently supports passport or driver&#39;s license</FormHelperText>
     </>
   ),
 };
