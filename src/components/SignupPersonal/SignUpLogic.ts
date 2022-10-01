@@ -6,10 +6,14 @@ import { phoneNumberRegex, postcodeRegex } from "./constants/constants";
 export const stateList = ["QLD", "VIC", "NSW", "NT", "SA", "ACT", "TAS", "WA"] as const;
 type StateList = typeof stateList[number];
 
+export const docTypeList = ["Driver's License", "Passport"] as const;
+type DocTypeList = typeof docTypeList[number];
+
 export interface FormState {
   firstName: string;
   lastName: string;
   phoneNumber: string;
+  docType: null | DocTypeList;
   residentialAddress: string;
   postcode: string;
   state: null | StateList;
@@ -19,6 +23,7 @@ export const initialFormState: FormState = {
   firstName: "",
   lastName: "",
   phoneNumber: "",
+  docType: null,
   postcode: "",
   state: null,
   residentialAddress: "",
@@ -32,6 +37,7 @@ export const fieldNameMap: FieldMap = {
   firstName: "First Name",
   lastName: "Last Name",
   phoneNumber: "Phone number",
+  docType: "Choose type of ID",
   postcode: "Postcode",
   state: "State (AU Only)",
   residentialAddress: "Residential Address",
@@ -48,6 +54,7 @@ export const PersonalInfoSchema = z.object({
   phoneNumber: z.string({ required_error: requiredErrorMsg }).regex(phoneNumberRegex, {
     message: "The Phone Number does not match required format. Example: 0411111111",
   }),
+  docType: z.enum(docTypeList, { required_error: requiredErrorMsg }),
   postcode: z.string({ required_error: requiredErrorMsg }).regex(postcodeRegex, {
     message: "The Postcode does not match the required format. Example: 4000",
   }),
