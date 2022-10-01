@@ -39,11 +39,22 @@ export const fieldNameMap: FieldMap = {
   firstName: "First Name",
   lastName: "Last Name",
   phoneNumber: "Phone number",
-  docType: "Choose type of ID",
+  docType: "Director identification document",
   fileUpload: "",
   postcode: "Postcode",
-  state: "State (AU Only)",
+  state: "State (AU only)",
   residentialAddress: "Residential Address",
+};
+
+export const fieldPlaceholderMap: FieldMap = {
+  firstName: "Enter your first Name",
+  lastName: "Enter your last Name",
+  phoneNumber: "Phone No.",
+  docType: "Choose type of ID",
+  fileUpload: "Upload file",
+  postcode: "Enter postcode",
+  state: "Choose state",
+  residentialAddress: "Residential address details",
 };
 
 const requiredErrorMsg = "This field is required";

@@ -26,17 +26,17 @@ describe("Testing onChange functions", () => {
       "Phone number"
     ) as HTMLInputElement;
     const docTypeInput: HTMLInputElement = screen.getByLabelText(
-      "Choose type of ID"
+      "Director identification document"
     ) as HTMLInputElement;
     const fileUploadInput: HTMLInputElement = screen.getByPlaceholderText(
-      "Enter"
+      "Upload file"
     ) as HTMLInputElement;
     const residentialAddressInput: HTMLInputElement = screen.getByLabelText(
       "Residential Address"
     ) as HTMLInputElement;
     const postcodeInput: HTMLInputElement = screen.getByLabelText("Postcode") as HTMLInputElement;
     const stateInput: HTMLInputElement = screen.getByLabelText(
-      "State (AU Only)"
+      "State (AU only)"
     ) as HTMLInputElement;
     // Fire a native changeText event with a specific value
     fireEvent.change(firstNameInput, { target: { value: "Jane" } });

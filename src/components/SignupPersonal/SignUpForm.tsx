@@ -2,7 +2,11 @@ import React from "react";
 import { Container, FormControl, FormLabel } from "@chakra-ui/react";
 import { initialFormState, FormState } from "@/components/SignupPersonal/SignUpLogic";
 import { SignUpFormProps } from "./SignUpFormProps";
-import { fieldNameMap, PersonalInfoSchema } from "@/components/SignupPersonal/SignUpLogic";
+import {
+  fieldNameMap,
+  fieldPlaceholderMap,
+  PersonalInfoSchema,
+} from "@/components/SignupPersonal/SignUpLogic";
 import { getHtmlElementMapping } from "./Helper";
 import { useForm } from "react-hook-form";
 import AlertPop from "../Common/AlertPop";
@@ -26,6 +30,8 @@ const SignUpForm = ({ isLoggedIn, onSubmit }: SignUpFormProps) => {
           // type casting
           // see: https://stackoverflow.com/a/64136988
           const properFieldName = fieldNameMap[val as keyof typeof fieldNameMap];
+          const properPlaceholder = fieldPlaceholderMap[val as keyof typeof fieldNameMap];
+
           const elemRenderer = getHtmlElementMapping(val);
           return (
             <Container key={`div-${idx}`} width={"40vw"}>
@@ -37,7 +43,7 @@ const SignUpForm = ({ isLoggedIn, onSubmit }: SignUpFormProps) => {
                   id: `${val}${idx}`,
                   size: "sm",
                   width: "100%",
-                  placeholder: `Enter ${properFieldName}`,
+                  placeholder: properPlaceholder,
                   key: `input ${idx}`,
                   ...register(val as keyof FormState, {}),
                 })}
