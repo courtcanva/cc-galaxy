@@ -1,12 +1,12 @@
-/* eslint-disable jest/no-commented-out-tests */
 import React from "react";
-import renderWithMockedProvider from "../../testHelper";
+import renderWithMockedProvider, { createMockRouter } from "../../testHelper";
 import user from "@testing-library/user-event";
-import { screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import Login from "../../../pages/login";
-// import axios from "axios";
-// import { environment } from "../../../constants/environment";
-// import loginAction from "../../../components/Login/LoginAction";
+import customAxios from "../../../utils/axios";
+import MockAdapter from "axios-mock-adapter";
+import loginAction from "../../../components/Login/LoginAction";
+import { RouterContext } from "next/dist/shared/lib/router-context";
 
 describe("Login Page", () => {
   it("should render personal login page success", () => {
@@ -17,44 +17,36 @@ describe("Login Page", () => {
 });
 
 describe("Testing form validation", () => {
-  // eslint-disable-next-line jest/no-focused-tests
   it("should show warning", async () => {
-    const submitBtn = screen.getByText("Log in");
+    renderWithMockedProvider(<Login />);
+    const usernameInput = screen.getByRole("username");
+    const passwordInput = screen.getByRole("password");
+    const submitBtn = screen.getByText("Login");
     user.click(submitBtn);
+
     await waitFor(() => expect(screen.getByText("Username is required")).toBeInTheDocument());
     await waitFor(() => expect(screen.getByText("Password is required")).toBeInTheDocument());
+
+    fireEvent.change(usernameInput, { target: { value: "123@123.com" } });
+    fireEvent.change(passwordInput, { target: { value: "123qweASD=" } });
   });
 });
 
-// jest.mock("axios");
+const mock = new MockAdapter(customAxios, { onNoMatch: "throwException" });
+const account = { username: "vvv@v.com", password: "123qweASD=" };
 
-// describe("fetchUsers", () => {
-//   describe("when API call is successful", () => {
-//     it.only("should return users list", async () => {
-//       const { loginRequest } = loginAction();
-//       // given
-//       const user = { username: "vvv@v.com", password: "123qweASD=" };
-//       (axios.post as jest.Mock).mockResolvedValue(user);
-//       // when
-//       const result = await loginRequest(user.username, user.password);
-//       // then
-//       expect(axios.get).toHaveBeenCalledWith(`${environment.API_BASE_URL}/users`);
-//       expect(result).toEqual(user);
-//     });
-//   });
-//   describe("when API call fails", () => {
-//     it("should return empty users list", async () => {
-//       // given
-//       const { loginRequest } = loginAction();
-//       const message = "Network Error";
-//       (axios.post as jest.Mock).mockRejectedValueOnce(new Error(message));
+beforeAll(() => {
+  mock.reset();
+});
 
-//       // when
-//       const result = await loginRequest("", "");
-
-//       // then
-//       expect(axios.get).toHaveBeenCalledWith(`${environment.API_BASE_URL}/users`);
-//       expect(result).toEqual([]);
-//     });
-//   });
-// });
+describe("axios mocking test", () => {
+  it("should call success", async () => {
+    renderWithMockedProvider(
+      <RouterContext.Provider value={createMockRouter({})}></RouterContext.Provider>
+    );
+    const { loginRequest } = loginAction();
+    const res = await loginRequest(account.username, account.password);
+    mock.onPost("/admin/login", account).reply(200, ["success"]);
+    expect(res).toEqual(account);
+  });
+});

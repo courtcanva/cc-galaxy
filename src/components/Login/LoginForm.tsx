@@ -57,8 +57,14 @@ const LoginForm = () => {
         name="password"
         render={({ message }) => <p style={{ color: "red" }}>{message}</p>}
       />
-      <Button variant={"loginBtn"} marginTop="32px" type="submit" isLoading={isLoading}>
-        Log in
+      <Button
+        role="login"
+        variant={"loginBtn"}
+        marginTop="32px"
+        type="submit"
+        isLoading={isLoading}
+      >
+        Login
       </Button>
     </form>
   );

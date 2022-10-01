@@ -10,15 +10,12 @@ export default function LoginAction() {
     return Object(error);
   };
 
-  const loginRequest = async (email: string, password: string) => {
+  const loginRequest = async (username: string, password: string) => {
     try {
       const response = await axios.post("/admin/login", {
-        email,
+        username,
         password,
       });
-      console.log(email);
-      console.log(password);
-      console.log(response);
       if (response?.status === 200) {
         newToast({ message: response.data.msg, status: "success" });
         router.push("/");
