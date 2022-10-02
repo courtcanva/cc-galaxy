@@ -17,7 +17,7 @@ export function useToastHook() {
         title: status,
         description: message,
         status: status,
-        duration: 3000,
+        duration: 90000,
         position: "top",
         isClosable: true,
       });

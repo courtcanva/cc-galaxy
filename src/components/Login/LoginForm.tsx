@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import loginAction from "./LoginAction";
+import { useRouter } from "next/router";
+import { useToastHook } from "@/components/Toast";
 
 type FormData = {
   username: string;
@@ -10,6 +12,8 @@ type FormData = {
 };
 
 const LoginForm = () => {
+  const [, newToast] = useToastHook();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { loginRequest } = loginAction();
   const {
@@ -23,7 +27,13 @@ const LoginForm = () => {
 
   const userLogin = async (data: { username: string; password: string }) => {
     setIsLoading(true);
-    await loginRequest(data.username, data.password);
+    const response = await loginRequest(data.username, data.password);
+    if (response?.status === 200) {
+      newToast({ message: response.data, status: "success" });
+      router.push("/");
+    } else {
+      newToast({ message: response.data, status: "error" });
+    }
     setIsLoading(false);
   };
 
