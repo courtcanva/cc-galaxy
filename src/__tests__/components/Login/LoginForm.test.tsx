@@ -6,6 +6,7 @@ import Login from "../../../pages/login";
 import customAxios from "../../../utils/axios";
 import MockAdapter from "axios-mock-adapter";
 import userLogin from "../../../components/Login/LoginAction";
+import { useToastHook } from "@/components/Toast";
 
 describe("Login Page", () => {
   it("should render personal login page success", () => {
@@ -39,5 +40,14 @@ describe("axios mocking test", () => {
     mock.onPost("/admin/login", account).reply(200, account);
     const res = await loginRequest(account.username, account.password);
     expect(res.data).toEqual(account);
+  });
+});
+
+describe("should toast be displayed", () => {
+  test("mock return value", () => {
+    const newToast = useToastHook();
+    jest.mock("../../../components/Toast.ts");
+    newToast({ message: "message", status: "success" });
+    expect(newToast).toHaveBeenCalledWith({ message: "message", status: "success" });
   });
 });

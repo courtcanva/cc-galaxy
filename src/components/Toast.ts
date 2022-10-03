@@ -24,5 +24,5 @@ export function useToastHook() {
     }
   }, [state, toast]);
 
-  return [state, setState] as const;
+  return setState;
 }

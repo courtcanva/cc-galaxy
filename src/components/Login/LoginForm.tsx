@@ -12,7 +12,7 @@ type FormData = {
 };
 
 const LoginForm = () => {
-  const [, newToast] = useToastHook();
+  const newToast = useToastHook();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { loginRequest } = loginAction();
@@ -38,7 +38,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form style={{ height: "400px", width: "360px" }} onSubmit={formSubmit}>
+    <form style={{ height: "400px", width: "360px", paddingTop: "50px" }} onSubmit={formSubmit}>
       <FormLabel fontWeight="600">Username</FormLabel>
       <Input
         role="username"

@@ -7,44 +7,23 @@ import { Flex, Image, Text } from "@chakra-ui/react";
 const Login: React.FC = () => {
   return (
     <HeaderLayout>
-      <Flex
-        width="100vw"
-        height="100vh"
-        justifyContent="center"
-        alignItems="center"
-        background="#114458"
-      >
-        <Flex justifyContent="center" alignItems="center" position="relative">
-          <Flex
-            width="629px"
-            height="682px"
-            flexDir="column"
-            alignItems="center"
-            justifyContent="space-around"
-            background="white"
-            zIndex="10"
-          >
-            <Flex flexDir="column" alignItems="center" marginTop="50px">
-              <Image boxSize="64px" alt="dashboard-logo-192x192" src="dashboard-logo-192x192.png" />
-              <Text marginTop="10px" color="brand.secondary">
-                CourtCanva
-              </Text>
-            </Flex>
-            <Flex flexDir="column" alignItems="center">
-              <Text fontSize="xl" fontWeight="700">
-                Log in to CourtCanva Franchisee
-              </Text>
-            </Flex>
-            <Flex>
-              <LoginForm />
-            </Flex>
+      <Flex height="100vh" justifyContent="center" alignItems="center">
+        <Image src="./login/login-image.png" alt="login-image" />
+        <Flex width="50%" flexDir="column" alignItems="center">
+          <Flex flexDir="column" alignItems="center">
+            <Image boxSize="64px" alt="dashboard-logo-192x192" src="dashboard-logo-192x192.png" />
+            <Text marginTop="26px" color="brand.secondary">
+              CourtCanva
+            </Text>
           </Flex>
-          <Image
-            src="./login/login-image.png"
-            zIndex="10"
-            alt="login-image"
-            transform="translateX(-5px)"
-          />
+          <Flex flexDir="column" alignItems="center">
+            <Text marginTop="32px" marginBottom="40px" fontSize="xl" fontWeight="700">
+              Log in to CourtCanva Franchisee
+            </Text>
+          </Flex>
+          <Flex>
+            <LoginForm />
+          </Flex>
         </Flex>
       </Flex>
     </HeaderLayout>
