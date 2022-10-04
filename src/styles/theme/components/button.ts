@@ -1,6 +1,6 @@
 export const button = {
   variants: {
-    loginBtn: {
+    signInBtn: {
       bg: "green.400",
       fontSize: "lg",
       fontWeights: "bold",

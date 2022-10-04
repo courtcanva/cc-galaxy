@@ -1,16 +1,16 @@
 import type { NextPage } from "next";
 import HeaderLayout from "../layouts/HeaderLayout";
-import Login from "../components/Login/index";
+import SignIn from "../components/SignIn/index";
 import { Box } from "@chakra-ui/react";
 
-const LoginPage: NextPage = () => {
+const SignInPage: NextPage = () => {
   return (
     <HeaderLayout>
       <Box as="main">
-        <Login />
+        <SignIn />
       </Box>
     </HeaderLayout>
   );
 };
 
-export default LoginPage;
+export default SignInPage;

@@ -1,48 +1,31 @@
 import { Button, FormLabel, Input } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import loginAction from "./LoginAction";
-import { useRouter } from "next/router";
-import { useToastHook } from "@/components/Toast";
+import useSignIn from "./useSignIn";
 
 type FormData = {
   username: string;
   password: string;
 };
 
-const LoginForm = () => {
-  const newToast = useToastHook();
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { loginRequest } = loginAction();
+const SignInForm = () => {
+  const { isLoading, handleSignInSubmit } = useSignIn();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm<FormData>();
-  const formSubmit = handleSubmit((data) => {
-    userLogin(data);
-  });
-
-  const userLogin = async (data: { username: string; password: string }) => {
-    setIsLoading(true);
-    const response = await loginRequest(data.username, data.password);
-    if (response?.status === 200) {
-      newToast({ message: response.data, status: "success" });
-      router.push("/");
-    } else {
-      newToast({ message: response.data, status: "error" });
-    }
-    setIsLoading(false);
+  const formSubmit = (data: { username: string; password: string }) => {
+    handleSignInSubmit(data);
   };
 
   return (
-    <form style={{ height: "400px", width: "360px", paddingTop: "50px" }} onSubmit={formSubmit}>
+    <form style={{ height: "400px", width: "360px" }} onSubmit={handleSubmit(formSubmit)}>
       <FormLabel fontWeight="600">Username</FormLabel>
       <Input
         role="username"
-        type="username"
+        type="email"
         {...register("username", {
           required: "Username is required",
         })}
@@ -68,16 +51,16 @@ const LoginForm = () => {
         render={({ message }) => <p style={{ color: "red" }}>{message}</p>}
       />
       <Button
-        role="login"
-        variant={"loginBtn"}
-        marginTop="32px"
+        role="signIn"
+        variant={"signInBtn"}
+        marginTop="48px"
         type="submit"
         isLoading={isLoading}
       >
-        Login
+        Sign In
       </Button>
     </form>
   );
 };
 
-export default LoginForm;
+export default SignInForm;

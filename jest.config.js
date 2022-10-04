@@ -22,6 +22,7 @@ const customJestConfig = {
   collectCoverageFrom: [
     "<rootDir>/src/**/*.{tsx,ts}",
     "!<rootDir>/src/components/ThemeToggle/index.tsx",
+    "!<rootDir>/src/components/Toast.ts",
     "!<rootDir>/src/layouts/HeaderLayout.tsx",
     "!<rootDir>/src/layouts/index.tsx",
     "!<rootDir>/src/styles/**/*.{tsx,ts}",
@@ -42,10 +43,10 @@ const customJestConfig = {
   collectCoverage: true,
   coverageThreshold: {
     global: {
-      statements: 0,
-      branches: 0,
-      functions: 0,
-      lines: 0,
+      statements: 80,
+      branches: 80,
+      functions: 80,
+      lines: 80,
     },
   },
 };
