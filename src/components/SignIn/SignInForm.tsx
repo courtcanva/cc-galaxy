@@ -24,6 +24,7 @@ const SignInForm = () => {
     <form style={{ height: "400px", width: "360px" }} onSubmit={handleSubmit(formSubmit)}>
       <FormLabel fontWeight="600">Username</FormLabel>
       <Input
+        placeholder="Enter username"
         role="username"
         type="email"
         {...register("username", {
@@ -39,6 +40,7 @@ const SignInForm = () => {
         Password
       </FormLabel>
       <Input
+        placeholder="Enter password"
         role="password"
         type="password"
         {...register("password", {
