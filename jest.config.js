@@ -22,7 +22,6 @@ const customJestConfig = {
   collectCoverageFrom: [
     "<rootDir>/src/**/*.{tsx,ts}",
     "!<rootDir>/src/components/ThemeToggle/index.tsx",
-    "!<rootDir>/src/components/Toast.ts",
     "!<rootDir>/src/layouts/HeaderLayout.tsx",
     "!<rootDir>/src/layouts/index.tsx",
     "!<rootDir>/src/styles/**/*.{tsx,ts}",

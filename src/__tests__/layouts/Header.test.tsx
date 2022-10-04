@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import Header from "@/layouts/Header";
 
 describe("Header", () => {
-  it("shout render header success", () => {
+  it("should render header success", () => {
     render(<Header />);
   });
 });
