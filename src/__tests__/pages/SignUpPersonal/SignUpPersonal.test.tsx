@@ -25,12 +25,6 @@ describe("Testing onChange functions", () => {
     const phoneNumberInput: HTMLInputElement = screen.getByLabelText(
       "Phone number"
     ) as HTMLInputElement;
-    const docTypeInput: HTMLInputElement = screen.getByLabelText(
-      "Director identification document"
-    ) as HTMLInputElement;
-    const fileUploadInput: HTMLInputElement = screen.getByPlaceholderText(
-      "Upload file"
-    ) as HTMLInputElement;
     const residentialAddressInput: HTMLInputElement = screen.getByLabelText(
       "Residential Address"
     ) as HTMLInputElement;
@@ -42,16 +36,12 @@ describe("Testing onChange functions", () => {
     fireEvent.change(firstNameInput, { target: { value: "Jane" } });
     fireEvent.change(lastNameInput, { target: { value: "Doe" } });
     fireEvent.change(phoneNumberInput, { target: { value: "0439493939" } });
-    fireEvent.change(docTypeInput, { target: { value: "Passport" } });
-    fireEvent.change(fileUploadInput, { target: { value: "test" } });
     fireEvent.change(residentialAddressInput, { target: { value: "test" } });
     fireEvent.change(postcodeInput, { target: { value: "test" } });
     fireEvent.change(stateInput, { target: { value: "QLD" } });
     // Checking the rendered value
     expect(firstNameInput.value).toBe("Jane");
     expect(phoneNumberInput.value).toBe("0439493939");
-    expect(docTypeInput.value).toBe("Passport");
-    expect(fileUploadInput.value).toBe("test");
     expect(residentialAddressInput.value).toBe("test");
     expect(postcodeInput.value).toBe("test");
     expect(stateInput.value).toBe("QLD");
@@ -100,13 +90,6 @@ describe("Testing form validation", () => {
       expect(
         screen.getByText(
           "Invalid enum value. Expected 'QLD' | 'VIC' | 'NSW' | 'NT' | 'SA' | 'ACT' | 'TAS' | 'WA', received ''"
-        )
-      ).toBeInTheDocument()
-    );
-    await waitFor(() =>
-      expect(
-        screen.getByText(
-          "Invalid enum value. Expected 'Driver's License' | 'Passport', received ''"
         )
       ).toBeInTheDocument()
     );

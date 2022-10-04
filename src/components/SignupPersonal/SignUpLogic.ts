@@ -6,15 +6,10 @@ import { phoneNumberRegex, postcodeRegex } from "./constants/constants";
 export const stateList = ["QLD", "VIC", "NSW", "NT", "SA", "ACT", "TAS", "WA"] as const;
 type StateList = typeof stateList[number];
 
-export const docTypeList = ["Driver's License", "Passport"] as const;
-type DocTypeList = typeof docTypeList[number];
-
 export interface FormState {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  docType: null | DocTypeList;
-  fileUpload: string;
   residentialAddress: string;
   postcode: string;
   state: null | StateList;
@@ -24,8 +19,6 @@ export const initialFormState: FormState = {
   firstName: "",
   lastName: "",
   phoneNumber: "",
-  docType: null,
-  fileUpload: "",
   postcode: "",
   state: null,
   residentialAddress: "",
@@ -39,8 +32,6 @@ export const fieldNameMap: FieldMap = {
   firstName: "First Name",
   lastName: "Last Name",
   phoneNumber: "Phone number",
-  docType: "Director identification document",
-  fileUpload: "",
   postcode: "Postcode",
   state: "State (AU only)",
   residentialAddress: "Residential Address",
@@ -50,8 +41,6 @@ export const fieldPlaceholderMap: FieldMap = {
   firstName: "Enter your first Name",
   lastName: "Enter your last Name",
   phoneNumber: "Phone No.",
-  docType: "Choose type of ID",
-  fileUpload: "Upload file",
   postcode: "Enter postcode",
   state: "Choose state",
   residentialAddress: "Residential address details",
@@ -68,7 +57,6 @@ export const PersonalInfoSchema = z.object({
   phoneNumber: z.string({ required_error: requiredErrorMsg }).regex(phoneNumberRegex, {
     message: "The Phone Number does not match required format. Example: 0411111111",
   }),
-  docType: z.enum(docTypeList, { required_error: requiredErrorMsg }),
   postcode: z.string({ required_error: requiredErrorMsg }).regex(postcodeRegex, {
     message: "The Postcode does not match the required format. Example: 4000",
   }),
