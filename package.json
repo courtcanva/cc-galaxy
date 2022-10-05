@@ -37,7 +37,7 @@
     "react-hook-form": "^7.36.1",
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2",
-    "styled-components": "5.3.5"
+    "styled-components": "5.3.6"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
