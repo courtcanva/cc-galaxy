@@ -1,13 +1,13 @@
-import { Button, FormLabel, Input } from "@chakra-ui/react";
+import { Button, Container, FormLabel, Input } from "@chakra-ui/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import useSignIn from "./useSignIn";
 
-type FormData = {
-  username: string;
+interface FormData {
+  email: string;
   password: string;
-};
+}
 
 const SignInForm = () => {
   const { isLoading, handleSignInSubmit } = useSignIn();
@@ -16,26 +16,24 @@ const SignInForm = () => {
     formState: { errors },
     handleSubmit,
   } = useForm<FormData>();
-  const formSubmit = (data: { username: string; password: string }) => {
-    handleSignInSubmit(data);
+  const formSubmit = ({ email, password }: FormData) => {
+    handleSignInSubmit(email, password);
   };
 
   return (
-    <form style={{ height: "400px", width: "360px" }} onSubmit={handleSubmit(formSubmit)}>
-      <FormLabel fontWeight="600">Username</FormLabel>
+    <form onSubmit={handleSubmit(formSubmit)}>
+      <FormLabel fontWeight="600">Email</FormLabel>
       <Input
-        placeholder="Enter username"
-        role="username"
+        placeholder="Enter email"
+        role="email"
         type="email"
-        {...register("username", {
+        {...register("email", {
           required: "Username is required",
         })}
       />
-      <ErrorMessage
-        errors={errors}
-        name="username"
-        render={({ message }) => <p style={{ color: "red" }}>{message}</p>}
-      />
+      <Container color="red">
+        <ErrorMessage errors={errors} name="email" render={({ message }) => <p>{message}</p>} />
+      </Container>
       <FormLabel marginTop="24px" fontWeight="600">
         Password
       </FormLabel>
@@ -47,11 +45,9 @@ const SignInForm = () => {
           required: "Password is required",
         })}
       />
-      <ErrorMessage
-        errors={errors}
-        name="password"
-        render={({ message }) => <p style={{ color: "red" }}>{message}</p>}
-      />
+      <Container color="red">
+        <ErrorMessage errors={errors} name="password" render={({ message }) => <p>{message}</p>} />
+      </Container>
       <Button
         role="signIn"
         variant={"signInBtn"}

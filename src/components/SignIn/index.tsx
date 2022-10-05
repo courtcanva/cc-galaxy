@@ -4,9 +4,9 @@ import SignInForm from "./SignInForm";
 
 import { Flex, Image, Text } from "@chakra-ui/react";
 
-const SignIn: React.FC = () => {
+const SignIn = () => {
   return (
-    <HeaderLayout>
+    <HeaderLayout title="Sign In">
       <Flex height="100vh" justifyContent="center" alignItems="center">
         <Flex width="100%" flexDir="column" alignItems="center">
           <Flex flexDir="column" alignItems="center">
@@ -20,7 +20,7 @@ const SignIn: React.FC = () => {
               Sign in to CourtCanva Franchisee
             </Text>
           </Flex>
-          <Flex>
+          <Flex width="360px" height="400px">
             <SignInForm />
           </Flex>
         </Flex>
@@ -29,7 +29,7 @@ const SignIn: React.FC = () => {
             height="100vh"
             objectFit="cover"
             src="./signIn/signIn-image.png"
-            alt="signIn-image"
+            alt="sign in background image"
           />
         </Flex>
       </Flex>

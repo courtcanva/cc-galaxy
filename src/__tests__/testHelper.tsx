@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { Provider } from "react-redux";
 import store from "../store";
 import { render } from "@testing-library/react";
-import { Chakra } from "../styles/index";
+import { Chakra } from "../styles";
 import { NextRouter } from "next/router";
 
 const renderWithMockedProvider = (children: ReactNode) => {
