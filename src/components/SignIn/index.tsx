@@ -1,43 +1,39 @@
-import React from "react";
-import HeaderLayout from "../../layouts/HeaderLayout";
 import SignInForm from "./SignInForm";
 
 import { Flex, Image, Text } from "@chakra-ui/react";
 
 const SignIn = () => {
   return (
-    <HeaderLayout title="Sign In">
-      <Flex height="100vh" justifyContent="center" alignItems="center">
-        <Flex width="100%" flexDir="column" alignItems="center">
-          <Flex flexDir="column" alignItems="center">
-            <Image
-              boxSize="104px"
-              alt="dashboard-logo-192x192"
-              src="/assets/dashboard-logo-192x192.png"
-            />
-            <Text fontSize="24" marginTop="24px" color="brand.secondary">
-              CourtCanva
-            </Text>
-          </Flex>
-          <Flex flexDir="column" alignItems="center">
-            <Text fontSize="20" marginTop="24px" marginBottom="48px" fontWeight="700">
-              Sign in to CourtCanva Franchisee
-            </Text>
-          </Flex>
-          <Flex width="360px" height="400px">
-            <SignInForm />
-          </Flex>
-        </Flex>
-        <Flex width="40%">
+    <Flex height="100vh" justifyContent="center" alignItems="center">
+      <Flex width="100%" flexDir="column" alignItems="center">
+        <Flex flexDir="column" alignItems="center">
           <Image
-            height="100vh"
-            objectFit="cover"
-            src="/assets/signIn/signIn-image.png"
-            alt="sign in background image"
+            boxSize="104px"
+            alt="dashboard-logo-192x192"
+            src="/assets/dashboard-logo-192x192.png"
           />
+          <Text fontSize="24" marginTop="24px" color="brand.secondary">
+            CourtCanva
+          </Text>
+        </Flex>
+        <Flex flexDir="column" alignItems="center">
+          <Text fontSize="20" marginTop="24px" marginBottom="48px" fontWeight="700">
+            Sign in to CourtCanva Franchisee
+          </Text>
+        </Flex>
+        <Flex width="360px" height="400px">
+          <SignInForm />
         </Flex>
       </Flex>
-    </HeaderLayout>
+      <Flex width="40%">
+        <Image
+          height="100vh"
+          objectFit="cover"
+          src="/assets/signIn/signIn-image.png"
+          alt="sign in background image"
+        />
+      </Flex>
+    </Flex>
   );
 };
 

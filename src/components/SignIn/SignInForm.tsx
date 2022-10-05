@@ -19,6 +19,9 @@ const SignInForm = () => {
   const formSubmit = ({ email, password }: FormData) => {
     handleSignInSubmit(email, password);
   };
+  const showError = (obj: { message: string }) => {
+    return <p>{obj.message}</p>;
+  };
 
   return (
     <form onSubmit={handleSubmit(formSubmit)}>
@@ -32,7 +35,7 @@ const SignInForm = () => {
         })}
       />
       <Container color="red">
-        <ErrorMessage errors={errors} name="email" render={({ message }) => <p>{message}</p>} />
+        <ErrorMessage errors={errors} name="email" render={showError} />
       </Container>
       <FormLabel marginTop="24px" fontWeight="600">
         Password
@@ -46,7 +49,7 @@ const SignInForm = () => {
         })}
       />
       <Container color="red">
-        <ErrorMessage errors={errors} name="password" render={({ message }) => <p>{message}</p>} />
+        <ErrorMessage errors={errors} name="password" render={showError} />
       </Container>
       <Button
         role="signIn"

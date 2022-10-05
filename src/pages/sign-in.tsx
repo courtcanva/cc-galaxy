@@ -5,7 +5,7 @@ import { Box } from "@chakra-ui/react";
 
 const SignInPage: NextPage = () => {
   return (
-    <HeaderLayout>
+    <HeaderLayout title="Sign In">
       <Box as="main">
         <SignIn />
       </Box>
