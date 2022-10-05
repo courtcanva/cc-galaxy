@@ -1,37 +1,10 @@
 import axios from "axios";
-import { omit } from "lodash-es";
 import { environment } from "../constants/environment";
 
-interface Config {
-  method: string;
-  params?: string;
-  requestData?: Record<string, unknown>;
-  token?: string;
-  headers?: { contentType: string };
-}
-
-const REQUEST_TIMEOUT = 10000;
-const axiosInstance = axios.create({
+const REQUEST_TIMEOUT = 2000;
+const customAxios = axios.create({
   baseURL: environment.API_BASE_URL,
   timeout: REQUEST_TIMEOUT,
 });
 
-export const api = async (
-  endpoint: string,
-  { method, params, requestData, token, headers, ...customConfig }: Config
-) => {
-  const config = {
-    method,
-    headers: {
-      Authorization: token ? `Bearer ${token}` : "",
-      "Content-Type": headers?.contentType ? headers.contentType : "application/json",
-      ...omit(headers, ["contentType"]),
-    },
-    params,
-    data: requestData,
-    ...customConfig,
-  };
-
-  const response = await axiosInstance(endpoint, { ...config });
-  return response;
-};
+export default customAxios;
