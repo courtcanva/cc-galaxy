@@ -7,7 +7,6 @@ import {
   TabPanel,
   Button,
   Flex,
-  Stack,
   Image,
   Text,
 } from "@chakra-ui/react";
@@ -36,7 +35,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <Flex alignItems="center" justifyContent="center" flexDir="column" margin="6vw">
+    <Flex width="34vw" alignItems="center" justifyContent="center" flexDir="column" margin="6vw">
       <Image boxSize="6.5vw" alt="dashboard-logo-192x192" src="dashboard-logo-192x192.png" />
       <Text margin="1vh" fontSize="24px" color="brand.secondary">
         CourtCanva
@@ -45,7 +44,7 @@ const SignUpForm = () => {
         Register with CourtCanva as our franchisee
       </Text>
       <Tabs isFitted marginTop="2.5vh" align="center" index={tabIndex} onChange={handleTabsChange}>
-        <TabList marginBottom="2vh">
+        <TabList marginBottom="2vh" width="34vw">
           <Tab>Step 1</Tab>
           <Tab>Step 2</Tab>
           <Tab>Step 3</Tab>
@@ -68,10 +67,10 @@ const SignUpForm = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
-      <Stack direction="row" spacing="1vw" alignItems="center" justifyContent="center">
+      <Flex direction="row" gap="1vw" alignItems="center" justifyContent="center">
         {tabIndex === 0 ? (
           <Button
-            width="100%"
+            width="32vw"
             colorScheme="green"
             disabled={isDisabled === 0 ? false : true}
             onClick={handleNextButton}
@@ -80,10 +79,11 @@ const SignUpForm = () => {
           </Button>
         ) : (
           <>
-            <Button colorScheme="green" onClick={handleBackButton}>
+            <Button width="15.5vw" colorScheme="green" onClick={handleBackButton}>
               Back
             </Button>
             <Button
+              width="15.5vw"
               colorScheme="gray"
               disabled={isDisabled === 0 ? false : true}
               onClick={handleNextButton}
@@ -92,7 +92,7 @@ const SignUpForm = () => {
             </Button>
           </>
         )}
-      </Stack>
+      </Flex>
     </Flex>
   );
 };

@@ -1,11 +1,5 @@
 import React, { useReducer, useState } from "react";
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  FormHelperText,
-  FormErrorMessage,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, FormHelperText, FormErrorMessage } from "@chakra-ui/react";
 import SignUpReducer, { FormActionKind, initialFormState } from "@/components/SignUp/SignUpReducer";
 // import SignUpActions from "./SignUpAction";
 
@@ -70,55 +64,30 @@ const SignUpCompanyInfo = ({ buttonStatus }: SignUpFromProps) => {
     console.log(password);
   };
 
-
-  const handleButtonStatus =() => {
-    if(!isEmailExisted && isChecked && isPwdValid){
-      buttonStatus(1);//set button isDisabled to 1
+  const handleButtonStatus = () => {
+    if (!isEmailExisted && isChecked && isPwdValid) {
+      buttonStatus(1); // set button isDisabled to 1
     }
-  }
+  };
 
   return (
     <form onChange={handleButtonStatus}>
-      <FormControl isInvalid={!isEmailValid || isEmailExisted} isRequired>
-        <FormLabel>Email</FormLabel>
-        <Input
-          name="email"
-          type="email"
-          placeholder="Enter email address"
-          onChange={handleEmailTextChange}
-          onBlur={handleEmailCheck}
-        />
-        {isEmailValid && !isEmailExisted ? (
-          <FormHelperText>Enter the email you would like to use as username</FormHelperText>
-        ) : (
-          <FormErrorMessage>{errEmailMsg}</FormErrorMessage>
-        )}
-      </FormControl>
-      <FormControl isInvalid={!isPwdValid} isRequired>
-        <FormLabel>Password</FormLabel>
-        <Input name="password" type="password" placeholder="Enter Password" onChange={handlePwdTextChange} />
-        {isPwdValid ? null : (
-          <FormErrorMessage>
-            Use 8 or more characters (a combination of letters, numbers and symbols)
-          </FormErrorMessage>
-        )}
-        <FormLabel>Confirm Password</FormLabel>
-        <Input name="password" type="password" placeholder="Confirm Password" onChange={handlePwdTextChange} />
-        {isPwdValid ? null : (
-          <FormErrorMessage>
-            Use 8 or more characters (a combination of letters, numbers and symbols)
-          </FormErrorMessage>
-        )}
-      </FormControl>
       <FormControl>
         <FormLabel>1</FormLabel>
         <Input />
-        
+
         <FormLabel>2</FormLabel>
         <Input />
         <FormLabel>3</FormLabel>
         <Input />
-        
+
+        <FormLabel>4</FormLabel>
+        <Input />
+        <FormLabel>2</FormLabel>
+        <Input />
+        <FormLabel>3</FormLabel>
+        <Input />
+
         <FormLabel>4</FormLabel>
         <Input />
       </FormControl>

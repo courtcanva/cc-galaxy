@@ -1,11 +1,5 @@
 import React, { useReducer, useState } from "react";
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  FormHelperText,
-  FormErrorMessage,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, FormHelperText, FormErrorMessage } from "@chakra-ui/react";
 import SignUpReducer, { FormActionKind, initialFormState } from "@/components/SignUp/SignUpReducer";
 // import SignUpActions from "./SignUpAction";
 
@@ -70,12 +64,11 @@ const SignUpPersonalInfo = ({ buttonStatus }: SignUpFromProps) => {
     console.log(password);
   };
 
-
-  const handleButtonStatus =() => {
-    if(!isEmailExisted && isChecked && isPwdValid){
-      buttonStatus(2);//set button isDisabled to 2
+  const handleButtonStatus = () => {
+    if (!isEmailExisted && isChecked && isPwdValid) {
+      buttonStatus(2); // set button isDisabled to 2
     }
-  }
+  };
 
   return (
     <form onChange={handleButtonStatus}>
@@ -96,14 +89,24 @@ const SignUpPersonalInfo = ({ buttonStatus }: SignUpFromProps) => {
       </FormControl>
       <FormControl isInvalid={!isPwdValid} isRequired>
         <FormLabel>Password</FormLabel>
-        <Input name="password" type="password" placeholder="Enter Password" onChange={handlePwdTextChange} />
+        <Input
+          name="password"
+          type="password"
+          placeholder="Enter Password"
+          onChange={handlePwdTextChange}
+        />
         {isPwdValid ? null : (
           <FormErrorMessage>
             Use 8 or more characters (a combination of letters, numbers and symbols)
           </FormErrorMessage>
         )}
         <FormLabel>Confirm Password</FormLabel>
-        <Input name="password" type="password" placeholder="Confirm Password" onChange={handlePwdTextChange} />
+        <Input
+          name="password"
+          type="password"
+          placeholder="Confirm Password"
+          onChange={handlePwdTextChange}
+        />
         {isPwdValid ? null : (
           <FormErrorMessage>
             Use 8 or more characters (a combination of letters, numbers and symbols)
@@ -113,22 +116,22 @@ const SignUpPersonalInfo = ({ buttonStatus }: SignUpFromProps) => {
       <FormControl>
         <FormLabel>1</FormLabel>
         <Input />
-        
+
         <FormLabel>2</FormLabel>
         <Input />
         <FormLabel>3</FormLabel>
         <Input />
-        
+
         <FormLabel>4</FormLabel>
         <Input />
         <FormLabel>5</FormLabel>
         <Input />
-        
+
         <FormLabel>6</FormLabel>
         <Input />
         <FormLabel>7</FormLabel>
         <Input />
-        
+
         <FormLabel>8</FormLabel>
         <Input />
       </FormControl>

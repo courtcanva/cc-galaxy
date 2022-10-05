@@ -1,11 +1,5 @@
 import React, { useReducer, useState } from "react";
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  FormHelperText,
-  FormErrorMessage,
-} from "@chakra-ui/react";
+import { FormControl, FormLabel, Input, FormHelperText, FormErrorMessage } from "@chakra-ui/react";
 import SignUpReducer, { FormActionKind, initialFormState } from "@/components/SignUp/SignUpReducer";
 // import SignUpActions from "./SignUpAction";
 
@@ -70,12 +64,11 @@ const SignUpInfoPage = ({ buttonStatus }: SignUpFromProps) => {
     console.log(password);
   };
 
-
-  const handleButtonStatus =() => {
-    if(!isEmailExisted && isChecked && isPwdValid){
-      buttonStatus(0);//set button isDisabled to 0
+  const handleButtonStatus = () => {
+    if (!isEmailExisted && isChecked && isPwdValid) {
+      buttonStatus(0); // set button isDisabled to 0
     }
-  }
+  };
 
   return (
     <form onChange={handleButtonStatus}>
@@ -94,16 +87,27 @@ const SignUpInfoPage = ({ buttonStatus }: SignUpFromProps) => {
           <FormErrorMessage>{errEmailMsg}</FormErrorMessage>
         )}
       </FormControl>
+      <br />
       <FormControl isInvalid={!isPwdValid} isRequired>
         <FormLabel>Password</FormLabel>
-        <Input name="password" type="password" placeholder="Enter Password" onChange={handlePwdTextChange} />
+        <Input
+          name="password"
+          type="password"
+          placeholder="Enter Password"
+          onChange={handlePwdTextChange}
+        />
         {isPwdValid ? null : (
           <FormErrorMessage>
             Use 8 or more characters (a combination of letters, numbers and symbols)
           </FormErrorMessage>
         )}
         <FormLabel>Confirm Password</FormLabel>
-        <Input name="password" type="password" placeholder="Confirm Password" onChange={handlePwdTextChange} />
+        <Input
+          name="password"
+          type="password"
+          placeholder="Confirm Password"
+          onChange={handlePwdTextChange}
+        />
         {isPwdValid ? null : (
           <FormErrorMessage>
             Use 8 or more characters (a combination of letters, numbers and symbols)
