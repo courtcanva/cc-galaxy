@@ -37,7 +37,7 @@ describe("Sign in Page", () => {
     await user.type(usernameInput, account.username);
     await user.type(passwordInput, account.password);
     user.click(submitBtn);
-    await waitFor(() => expect(screen.getByRole("status")).toBeInTheDocument());
+    expect(await screen.findByRole("status")).toBeInTheDocument();
   });
 
   const mock = new MockAdapter(customAxios, { onNoMatch: "throwException" });
@@ -61,6 +61,6 @@ describe("Sign in Page", () => {
       result.current.handleSignInSubmit(account.username, account.password);
     });
     await waitFor(() => expect(result.current.isLoading).toBe(true));
-    await waitFor(() => expect(screen.getByRole("status")).toBeInTheDocument());
+    expect(await screen.findByRole("status")).toBeInTheDocument();
   });
 });
