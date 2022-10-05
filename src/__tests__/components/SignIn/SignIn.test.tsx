@@ -7,7 +7,6 @@ import customAxios from "../../../utils/axios";
 import MockAdapter from "axios-mock-adapter";
 import userSignIn from "../../../components/SignIn/useSignIn";
 import { act } from "react-dom/test-utils";
-import userEvent from "@testing-library/user-event";
 
 describe("Sign in Page", () => {
   const account = { username: "vvv@v.com", password: "123qweASD=" };
@@ -35,8 +34,8 @@ describe("Sign in Page", () => {
     const submitBtn = screen.getByText("Sign In");
     const usernameInput = screen.getByRole("email");
     const passwordInput = screen.getByRole("password");
-    await userEvent.type(usernameInput, account.username);
-    await userEvent.type(passwordInput, account.password);
+    await user.type(usernameInput, account.username);
+    await user.type(passwordInput, account.password);
     user.click(submitBtn);
     await waitFor(() => expect(screen.getByRole("status")).toBeInTheDocument());
   });
