@@ -10,7 +10,11 @@ const SignIn = () => {
       <Flex height="100vh" justifyContent="center" alignItems="center">
         <Flex width="100%" flexDir="column" alignItems="center">
           <Flex flexDir="column" alignItems="center">
-            <Image boxSize="104px" alt="dashboard-logo-192x192" src="dashboard-logo-192x192.png" />
+            <Image
+              boxSize="104px"
+              alt="dashboard-logo-192x192"
+              src="/assets/dashboard-logo-192x192.png"
+            />
             <Text fontSize="24" marginTop="24px" color="brand.secondary">
               CourtCanva
             </Text>
@@ -28,7 +32,7 @@ const SignIn = () => {
           <Image
             height="100vh"
             objectFit="cover"
-            src="./signIn/signIn-image.png"
+            src="/assets/signIn/signIn-image.png"
             alt="sign in background image"
           />
         </Flex>
