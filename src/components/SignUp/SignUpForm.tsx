@@ -43,11 +43,39 @@ const SignUpForm = () => {
       <Text margin="1vh" fontSize="16px" fontWeight="400">
         Register with CourtCanva as our franchisee
       </Text>
-      <Tabs isFitted marginTop="2.5vh" align="center" index={tabIndex} onChange={handleTabsChange}>
-        <TabList marginBottom="2vh" width="34vw">
-          <Tab>Step 1</Tab>
-          <Tab>Step 2</Tab>
-          <Tab>Step 3</Tab>
+      <Tabs
+        isFitted
+        width="34vw"
+        marginTop="2.5vh"
+        align="center"
+        index={tabIndex}
+        onChange={handleTabsChange}
+      >
+        <TabList border="hidden" marginBottom="2vh" width="31vw">
+          <Tab
+            _selected={{ borderColor: "#49B785", color: "#2B6CB0" }}
+            borderColor="rgba(54, 73, 93, 0.43)"
+            color="rgba(43, 108, 176, 0.7)"
+            margin="0vw 0.5vw"
+          >
+            Step 1
+          </Tab>
+          <Tab
+            _selected={{ borderColor: "#49B785", color: "#2B6CB0" }}
+            borderColor="rgba(54, 73, 93, 0.43)"
+            color="rgba(43, 108, 176, 0.7)"
+            margin="0vw 0.5vw"
+          >
+            Step 2
+          </Tab>
+          <Tab
+            _selected={{ borderColor: "#49B785", color: "#2B6CB0" }}
+            borderColor="rgba(54, 73, 93, 0.43)"
+            color="rgba(43, 108, 176, 0.7)"
+            margin="0vw 0.5vw"
+          >
+            Step 3
+          </Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -71,7 +99,8 @@ const SignUpForm = () => {
         {tabIndex === 0 ? (
           <Button
             width="32vw"
-            colorScheme="green"
+            color="white"
+            backgroundColor="#48BB78"
             disabled={isDisabled === 0 ? false : true}
             onClick={handleNextButton}
           >
@@ -79,12 +108,18 @@ const SignUpForm = () => {
           </Button>
         ) : (
           <>
-            <Button width="15.5vw" colorScheme="green" onClick={handleBackButton}>
+            <Button
+              width="15.5vw"
+              color="white"
+              backgroundColor="#48BB78"
+              onClick={handleBackButton}
+            >
               Back
             </Button>
             <Button
               width="15.5vw"
-              colorScheme="gray"
+              color="white"
+              backgroundColor="rgba(54, 73, 93, 1)"
               disabled={isDisabled === 0 ? false : true}
               onClick={handleNextButton}
             >
